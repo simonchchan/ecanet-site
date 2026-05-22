@@ -77,6 +77,20 @@
   .nav-cta:hover{background:var(--gold);color:var(--navy)!important;}
   .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;}
   .burger span{width:24px;height:2px;background:var(--gold-light);transition:.3s;}
+  .nav-right{display:flex;align-items:center;gap:22px;}
+  .lang-toggle{
+    display:flex;border:1px solid rgba(198,163,90,.5);
+    border-radius:3px;overflow:hidden;flex-shrink:0;
+  }
+  .lang-toggle button{
+    background:transparent;border:none;cursor:pointer;
+    font-family:'Noto Sans SC',sans-serif;font-size:13px;letter-spacing:.04em;
+    color:#cdd3df;padding:6px 12px;line-height:1.4;
+    transition:background .2s,color .2s;
+  }
+  .lang-toggle button:hover{color:var(--gold-light);}
+  .lang-toggle button.active{background:var(--gold);color:var(--navy);font-weight:700;}
+  .lang-toggle button.active:hover{color:var(--navy);}
 
   /* ---------- HERO ---------- */
   .hero{
@@ -375,6 +389,7 @@
   /* ---------- RESPONSIVE ---------- */
   @media(max-width:880px){
     .burger{display:flex;}
+    .nav-right{gap:14px;}
     nav ul{
       position:fixed;top:72px;left:0;right:0;
       background:rgba(11,26,58,.98);
@@ -423,17 +438,23 @@
       </svg>
       <span class="brand-name"><b>ECANET</b><span>合规咨询 · 公司秘书</span></span>
     </a>
-    <nav>
-      <ul id="menu">
-        <li><a href="#about">关于我们</a></li>
-        <li><a href="#founder">创办人</a></li>
-        <li><a href="#services">服务范围</a></li>
-        <li><a href="#commitment">服务承诺</a></li>
-        <li><a href="#contact" class="nav-cta">联络我们</a></li>
-      </ul>
-    </nav>
-    <div class="burger" id="burger" aria-label="菜单" role="button" tabindex="0">
-      <span></span><span></span><span></span>
+    <div class="nav-right">
+      <nav>
+        <ul id="menu">
+          <li><a href="#about">关于我们</a></li>
+          <li><a href="#founder">创办人</a></li>
+          <li><a href="#services">服务范围</a></li>
+          <li><a href="#commitment">服务承诺</a></li>
+          <li><a href="#contact" class="nav-cta">联络我们</a></li>
+        </ul>
+      </nav>
+      <div class="lang-toggle no-i18n" id="langToggle" role="group" aria-label="选择语言 / 選擇語言">
+        <button type="button" data-lang="s" class="active">简</button>
+        <button type="button" data-lang="t">繁</button>
+      </div>
+      <div class="burger" id="burger" aria-label="菜单" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </div>
 </header>
@@ -791,6 +812,48 @@
     });
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+</script>
+
+<script>
+/* 简 / 繁 双语切换 — 繁体内容由 OpenCC（简体 → 香港繁体）预先转换，无外部依赖 */
+(function(){
+  var S2T={"ECANET International Company Limited | 合规咨询 · 公司秘书":"ECANET International Company Limited | 合規諮詢 · 公司秘書","合规咨询 · 公司秘书":"合規諮詢 · 公司秘書","关于我们":"關於我們","创办人":"創辦人","服务范围":"服務範圍","服务承诺":"服務承諾","联络我们":"聯絡我們","正 式 开 业":"正 式 開 業","合规咨询":"合規諮詢","公司秘书":"公司秘書","为资产管理公司、基金及持牌法团":"為資產管理公司、基金及持牌法團","提供独立合规、反洗钱及监管咨询":"提供獨立合規、反洗錢及監管諮詢","预约免费初步咨询":"預約免費初步諮詢","了解服务范围":"瞭解服務範圍","年专业经验":"年專業經驗","基金项目审阅经验":"基金項目審閲經驗","5000万+":"5000萬+","港币罚款成功节省":"港幣罰款成功節省","SFC 成功处理个案":"SFC 成功處理個案","公司简介":"公司簡介","（下称「本公司」）为一间根据香港《公司条例》注册成立之专业服务公司，致力为本地及海外客户提供一站式财务、税务、合规及企业秘书服务。":"（下稱「本公司」）為一間根據香港《公司條例》註冊成立之專業服務公司，致力為本地及海外客户提供一站式財務、税務、合規及企業秘書服務。","本公司由资深合规专家 ":"本公司由資深合規專家 ","Simon Chan 先生":"Simon Chan 先生","创立及主理，结合其逾二十年于 SFC 合规领域之深厚经验，以及于财务、会计及企业服务行业之实务知识，为不同规模之企业客户提供量身定制之专业解决方案。我们深谙香港金融监管制度、《证券及期货条例》及相关守则，并熟悉本地公司之财务及税务运作。":"創立及主理，結合其逾二十年於 SFC 合規領域之深厚經驗，以及於財務、會計及企業服務行業之實務知識，為不同規模之企業客户提供量身定製之專業解決方案。我們深諳香港金融監管制度、《證券及期貨條例》及相關守則，並熟悉本地公司之財務及税務運作。","本公司现提供六大类别之专业服务，全方位覆盖中小企业及金融机构由日常营运到监管合规之所需。":"本公司現提供六大類別之專業服務，全方位覆蓋中小企業及金融機構由日常營運到監管合規之所需。","六大专业服务":"六大專業服務","一":"一","财务咨询及做帐":"財務諮詢及做帳","二":"二","公司秘书服务":"公司秘書服務","三":"三","公司注册及企业架构":"公司註冊及企業架構","四":"四","税务咨询及申报":"税務諮詢及申報","五":"五","审计服务":"審計服務","六":"六","合规咨询服务":"合規諮詢服務","创办人简介":"創辦人簡介","Simon Chan 陈先生":"Simon Chan 陳先生","创办人 / 主理顾问":"創辦人 / 主理顧問","中国法学":"中國法學","Simon Chan 先生为本公司创办人及主理顾问，拥有超过 ":"Simon Chan 先生為本公司創辦人及主理顧問，擁有超過 ","18 年":"18 年","于亚太区金融服务业之合规管理及监管事务经验，专长涵盖香港证监会（SFC）、保险业监管局（IA）、开曼群岛金融管理局（CIMA）之监管合规、反洗钱（AML）及基金管治。Simon 曾成功主导多项复杂之监管检查项目，包括 SFC 例行审查及 KPMG 独立检视，均以「":"於亞太區金融服務業之合規管理及監管事務經驗，專長涵蓋香港證監會（SFC）、保險業監管局（IA）、開曼羣島金融管理局（CIMA）之監管合規、反洗錢（AML）及基金管治。Simon 曾成功主導多項複雜之監管檢查項目，包括 SFC 例行審查及 KPMG 獨立檢視，均以「","零罚则":"零罰則","」纪录完美结案。":"」紀錄完美結案。","Simon 曾担任管理资产规模逾 ":"Simon 曾擔任管理資產規模逾 ","5 亿美元":"5 億美元","之资产管理公司之合规总监，并于香港、新加坡、澳洲、加拿大及美国等多个司法管辖区建立合规架构。其职业生涯横跨多间知名金融机构，包括海通国际资产管理、诺亚国际及太平金融，在持牌机构之牌照申请、AML、基金管治、虚拟资产合规及监管沟通等方面累积丰富实战经验。":"之資產管理公司之合規總監，並於香港、新加坡、澳洲、加拿大及美國等多個司法管轄區建立合規架構。其職業生涯橫跨多間知名金融機構，包括海通國際資產管理、諾亞國際及太平金融，在持牌機構之牌照申請、AML、基金管治、虛擬資產合規及監管溝通等方面累積豐富實戰經驗。","Simon 结合深厚之法律专业（中国法学学位）、财务专业（CPA、CFA、FRM）及前沿科技知识（MIT 应用数据科学、人工智能及机器学习），为客户提供以商业实务为基础、兼顾风险管理之合规解决方案。":"Simon 結合深厚之法律專業（中國法學學位）、財務專業（CPA、CFA、FRM）及前沿科技知識（MIT 應用數據科學、人工智能及機器學習），為客户提供以商業實務為基礎、兼顧風險管理之合規解決方案。","从业年资":"從業年資","逾 18 年金融服务业合规管理经验，涵盖亚太区多个司法管辖区。":"逾 18 年金融服務業合規管理經驗，涵蓋亞太區多個司法管轄區。","现任职务":"現任職務","知名资产财富管理机构合规总监（MIC of AML, Compliance, MLRO 及 Complaints Officer）。":"知名資產財富管理機構合規總監（MIC of AML, Compliance, MLRO 及 Complaints Officer）。","监管经验":"監管經驗","成功处理 SFC 例行审查、KPMG 独立检视等大型监管项目，均以零罚则结案。":"成功處理 SFC 例行審查、KPMG 獨立檢視等大型監管項目，均以零罰則結案。","重大成就":"重大成就","于 SFC 调查期间重塑 KPMG 之 AML 方法论，协助集团避免逾港币 5,000 万元罚款。":"於 SFC 調查期間重塑 KPMG 之 AML 方法論，協助集團避免逾港幣 5,000 萬元罰款。","管辖范畴":"管轄範疇","曾为涵盖香港、新加坡、澳洲、加拿大、美国、澳门及台湾之集团提供合规支援。":"曾為涵蓋香港、新加坡、澳洲、加拿大、美國、澳門及台灣之集團提供合規支援。","牌照经验":"牌照經驗","曾申请及维持 SFC 第 1、2、4、5、6、9 类牌照，以及 QDII、QFII、RQFII 资格。":"曾申請及維持 SFC 第 1、2、4、5、6、9 類牌照，以及 QDII、QFII、RQFII 資格。","专业认证":"專業認證","CFA（2021）、FRM（2018）、香港执业会计师 CPA（2004）、MIT 应用数据科学（2023）。":"CFA（2021）、FRM（2018）、香港執業會計師 CPA（2004）、MIT 應用數據科學（2023）。","教育背景":"教育背景","香港中文大学专业会计学士、清华大学／港大专业进修学院中国法学第二学位。":"香港中文大學專業會計學士、清華大學／港大專業進修學院中國法學第二學位。","语言能力":"語言能力","英文（流利）、广东话（母语）、普通话（流利）。":"英文（流利）、廣東話（母語）、普通話（流利）。","财务咨询及做帐服务":"財務諮詢及做帳服務","簿记及月度／季度／年度会计处理":"簿記及月度／季度／年度會計處理","编制财务报表（符合 HKFRS 香港财务报告准则）":"編制財務報表（符合 HKFRS 香港財務報告準則）","管理帐目、损益表、资产负债表及现金流量表的编制":"管理帳目、損益表、資產負債表及現金流量表的編制","应收应付帐款管理及对帐":"應收應付帳款管理及對帳","银行月结单核对（Bank Reconciliation）":"銀行月結單核對（Bank Reconciliation）","财务分析及管理报告":"財務分析及管理報告","预算编制及现金流预测协助":"預算編製及現金流預測協助","薪酬计算及强积金（MPF）行政管理":"薪酬計算及強積金（MPF）行政管理","担任公司法定秘书（符合《公司条例》第 474 条要求）":"擔任公司法定秘書（符合《公司條例》第 474 條要求）","周年申报表（NAR1）拟备及提交":"週年申報表（NAR1）擬備及提交","重要控制人登记册（SCR）维护":"重要控制人登記冊（SCR）維護","公司会议召开、董事会议及股东大会记录":"公司會議召開、董事會議及股東大會記錄","法定簿册（Statutory Books）维护及更新":"法定簿冊（Statutory Books）維護及更新","公司架构变更：董事／股东／秘书变更、股本变动、名称更改":"公司架構變更：董事／股東／秘書變更、股本變動、名稱更改","股权转让及印花税申报":"股權轉讓及印花税申報","商业登记证（BR）续期协助":"商業登記證（BR）續期協助","公司注销（Deregistration）及清盘协助":"公司註銷（Deregistration）及清盤協助","公司注册及企业架构服务":"公司註冊及企業架構服務","香港有限公司（私人股份有限公司）注册及成立":"香港有限公司（私人股份有限公司）註冊及成立","海外公司注册安排（BVI、Cayman、Samoa、Delaware 等）":"海外公司註冊安排（BVI、Cayman、Samoa、Delaware 等）","公司名称查册及保留":"公司名稱查冊及保留","公司章程细则（Articles of Association）拟备":"公司章程細則（Articles of Association）擬備","电子签署及网上提交全程服务":"電子簽署及網上提交全程服務","银行开户协助：文件准备、KYC 文件整理及预审":"銀行開户協助：文件準備、KYC 文件整理及預審","协调本地及国际银行（包括虚拟银行）开户安排":"協調本地及國際銀行（包括虛擬銀行）開户安排","陪同客户出席银行开户面谈":"陪同客户出席銀行開户面談","信托架构设计及代名董事／股东安排（合规范围内）":"信託架構設計及代名董事／股東安排（合規範圍內）","为客户度身订造之企业架构咨询（含跨境架构规划）":"為客户度身訂造之企業架構諮詢（含跨境架構規劃）","税务咨询及申报服务":"税務諮詢及申報服務","利得税申报（BIR51／BIR52）拟备及提交":"利得税申報（BIR51／BIR52）擬備及提交","薪俸税及雇主报税表（BIR56A、IR56B／E／F／G）申报":"薪俸税及僱主報税表（BIR56A、IR56B／E／F／G）申報","物业税申报（如适用）":"物業税申報（如適用）","税务计算及税务规划建议":"税務計算及税務規劃建議","回应税务局（IRD）查询及反对评税申请":"回應税務局（IRD）查詢及反對評税申請","税务实地审核（Field Audit）及调查支援":"税務實地審核（Field Audit）及調查支援","离岸利润申索（Offshore Claim）申请协助":"離岸利潤申索（Offshore Claim）申請協助","双重课税宽免及税务居民身份证明书申请":"雙重課税寬免及税務居民身份證明書申請","BEPS 2.0／全球最低税率影响评估（如适用）":"BEPS 2.0／全球最低税率影響評估（如適用）","为新成立公司提供税务架构咨询":"為新成立公司提供税務架構諮詢","法定审计（根据《公司条例》要求）":"法定審計（根據《公司條例》要求）","由本公司协调独立执业会计师（CPA）进行审计工作":"由本公司協調獨立執業會計師（CPA）進行審計工作","审计前财务资料整理及准备":"審計前財務資料整理及準備","审计计划及时间表协调":"審計計劃及時間表協調","处理审计师之查询及确认事项":"處理審計師之查詢及確認事項","管理代表函件（Management Representation Letter）拟备协助":"管理代表函件（Management Representation Letter）擬備協助","审计调整分录（Audit Adjustments）处理":"審計調整分錄（Audit Adjustments）處理","特别审计安排（如重组、收购前尽职审计、专项审查）":"特別審計安排（如重組、收購前盡職審計、專項審查）","向董事及股东解释审计报告及关键事项":"向董事及股東解釋審計報告及關鍵事項","为 SFC 持牌机构提供持续合规咨询（资深合规专家亲自主理）":"為 SFC 持牌機構提供持續合規諮詢（資深合規專家親自主理）","SFC 牌照申请支援（第 1、2、4、5、6、9 类受规管活动）":"SFC 牌照申請支援（第 1、2、4、5、6、9 類受規管活動）","SFC 负责人员（RO）及持牌代表（LR）申报安排":"SFC 負責人員（RO）及持牌代表（LR）申報安排","审阅及优化合规手册及内部政策":"審閲及優化合規手冊及內部政策","应对《证券及期货条例》及 SFC 指引之最新更新":"應對《證券及期貨條例》及 SFC 指引之最新更新","SFC 例行检查、问询及现场检查应对支援":"SFC 例行檢查、問詢及現場檢查應對支援","AML／CFT 政策制定及反洗钱合规咨询":"AML／CFT 政策制定及反洗錢合規諮詢","机构 ML／TF 风险评估（IRA）协助":"機構 ML／TF 風險評估（IRA）協助","员工合规培训（包括 AML、操守准则、CPT）":"員工合規培訓（包括 AML、操守準則、CPT）","信托或公司服务提供者（TCSP）及虚拟资产合规支援":"信託或公司服務提供者（TCSP）及虛擬資產合規支援","专业经验":"專業經驗","核心团队拥有逾 20 年 SFC 合规及香港会计税务实战经验，深谙监管要求与业界实务。":"核心團隊擁有逾 20 年 SFC 合規及香港會計税務實戰經驗，深諳監管要求與業界實務。","一站式服务":"一站式服務","由日常做帐、税务申报，至公司秘书及 SFC 合规咨询，全方位覆盖中小企业及金融机构所需。":"由日常做帳、税務申報，至公司秘書及 SFC 合規諮詢，全方位覆蓋中小企業及金融機構所需。","收费透明":"收費透明","所有服务收费清晰列明，无隐藏费用，客户可按实际需求选择合适方案。":"所有服務收費清晰列明，無隱藏費用，客户可按實際需求選擇合適方案。","保密原则":"保密原則","严格遵守客户资料保密原则，所有资料按香港《个人资料（私隐）条例》处理。":"嚴格遵守客户資料保密原則，所有資料按香港《個人資料（私隱）條例》處理。","高效执行":"高效執行","结合数字化工具与专业人员跟进，确保各类申报、簿记及咨询事项准时完成。":"結合數字化工具與專業人員跟進，確保各類申報、簿記及諮詢事項準時完成。","持续支援":"持續支援","提供长期顾问支援，协助客户应对监管环境及税务政策之变化。":"提供長期顧問支援，協助客户應對監管環境及税務政策之變化。","重要声明":"重要聲明","本公司介绍所载内容仅供参考之用，并不构成正式服务合约。实际服务内容、收费及条款将以双方签订之服务协议书（Engagement Letter）为准。":"本公司介紹所載內容僅供參考之用，並不構成正式服務合約。實際服務內容、收費及條款將以雙方簽訂之服務協議書（Engagement Letter）為準。","本公司并非律师事务所，不提供法律意见。如客户有具体法律问题，本公司会建议客户咨询合资格之执业律师。":"本公司並非律師事務所，不提供法律意見。如客户有具體法律問題，本公司會建議客户諮詢合資格之執業律師。","本公司提供之审计服务由独立执业会计师（CPA）负责执行，本公司主要担任协调及文件整理之角色。审计意见之最终决定权属于该独立执业会计师。":"本公司提供之審計服務由獨立執業會計師（CPA）負責執行，本公司主要擔任協調及文件整理之角色。審計意見之最終決定權屬於該獨立執業會計師。","本公司提供之合规咨询服务乃基于现行法例及监管指引，并不能保证监管机构之最终决定。所有牌照申请及合规事宜之最终批核权属于相关监管机构。":"本公司提供之合規諮詢服務乃基於現行法例及監管指引，並不能保證監管機構之最終決定。所有牌照申請及合規事宜之最終批核權屬於相關監管機構。","本公司可因应市场及法规之变化，适时调整及更新服务范围，以确保服务内容与时俱进。":"本公司可因應市場及法規之變化，適時調整及更新服務範圍，以確保服務內容與時俱進。","与您并肩，":"與您並肩，","共同守护与成长":"共同守護與成長","如阁下有意了解更多服务详情或安排免费初步咨询，欢迎随时透过以下方式联络我们。":"如閣下有意瞭解更多服務詳情或安排免費初步諮詢，歡迎隨時透過以下方式聯絡我們。","私讯查询 · 关注我们 · 立足香港":"私訊查詢 · 關注我們 · 立足香港","WhatsApp / 电话":"WhatsApp / 電話","微信 WeChat ID":"微信 WeChat ID","公司名称":"公司名稱","合规咨询 · 公司秘书 · 立足香港":"合規諮詢 · 公司秘書 · 立足香港"};
+  var CJK=/[㐀-鿿]/;
+  function blocked(p){
+    while(p){
+      var nn=p.nodeName;
+      if(nn==='SCRIPT'||nn==='STYLE'||nn==='NOSCRIPT')return true;
+      if(p.classList&&p.classList.contains('no-i18n'))return true;
+      p=p.parentElement;
+    }
+    return false;
+  }
+  var items=[];
+  var w=document.createTreeWalker(document.documentElement,NodeFilter.SHOW_TEXT,null),n;
+  while(n=w.nextNode()){
+    if(CJK.test(n.nodeValue)&&!blocked(n.parentNode))items.push({n:n,s:n.nodeValue});
+  }
+  function apply(lang){
+    for(var i=0;i<items.length;i++){
+      items[i].n.nodeValue=(lang==='t')?(S2T[items[i].s]||items[i].s):items[i].s;
+    }
+    document.documentElement.lang=(lang==='t')?'zh-Hant-HK':'zh-CN';
+    var b=document.querySelectorAll('#langToggle button');
+    for(var j=0;j<b.length;j++){
+      var on=b[j].getAttribute('data-lang')===lang;
+      b[j].classList.toggle('active',on);
+      b[j].setAttribute('aria-pressed',on?'true':'false');
+    }
+    try{localStorage.setItem('ecanet-lang',lang);}catch(e){}
+  }
+  var saved='s';
+  try{var v=localStorage.getItem('ecanet-lang');if(v==='t'||v==='s')saved=v;}catch(e){}
+  apply(saved);
+  var tb=document.querySelectorAll('#langToggle button');
+  for(var k=0;k<tb.length;k++){
+    tb[k].addEventListener('click',function(){apply(this.getAttribute('data-lang'));});
+  }
+})();
 </script>
 
 </body>
