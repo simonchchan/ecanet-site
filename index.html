@@ -449,8 +449,8 @@
         </ul>
       </nav>
       <div class="lang-toggle no-i18n" id="langToggle" role="group" aria-label="选择语言 / 選擇語言">
-        <button type="button" data-lang="s" class="active">简</button>
-        <button type="button" data-lang="t">繁</button>
+        <button type="button" data-lang="s">简</button>
+        <button type="button" data-lang="t" class="active">繁</button>
       </div>
       <div class="burger" id="burger" aria-label="菜单" role="button" tabindex="0">
         <span></span><span></span><span></span>
@@ -846,7 +846,7 @@
     }
     try{localStorage.setItem('ecanet-lang',lang);}catch(e){}
   }
-  var saved='s';
+  var saved='t';
   try{var v=localStorage.getItem('ecanet-lang');if(v==='t'||v==='s')saved=v;}catch(e){}
   apply(saved);
   var tb=document.querySelectorAll('#langToggle button');
