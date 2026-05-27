@@ -7,7 +7,7 @@
 <meta name="description" content="ECANET International Company Limited — 為資產管理公司、基金及持牌法團提供獨立合規、反洗錢及監管諮詢。財務、稅務、公司秘書、審計及合規一站式服務。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;500;600;700;900&family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Cormorant:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #0A1F3D;
@@ -22,7 +22,6 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -33,86 +32,59 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
+  /* language-specific body fonts */
+  body[data-lang="sc"] { font-family: 'Noto Sans SC', sans-serif; }
+  body[data-lang="en"] { font-family: 'Cormorant', 'Noto Sans TC', sans-serif; }
 
   .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
 
-  /* ===== Decorative corner accents ===== */
-  .corner-deco {
-    position: fixed;
-    width: 120px; height: 120px;
-    pointer-events: none; z-index: 2;
-    opacity: 0.5;
-  }
+  /* corner deco */
+  .corner-deco { position: fixed; width: 120px; height: 120px; pointer-events: none; z-index: 2; opacity: 0.5; }
   .corner-deco.tl { top: 0; left: 0; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
   .corner-deco.tr { top: 0; right: 0; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
   .corner-deco.bl { bottom: 0; left: 0; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
   .corner-deco.br { bottom: 0; right: 0; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
   @media (max-width: 768px) { .corner-deco { width: 56px; height: 56px; } }
 
-  /* ===== Top bar ===== */
-  .topbar {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(7,22,41,0.82);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--line);
-    transition: padding .35s ease, background .35s ease;
-  }
+  /* top bar */
+  .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(7,22,41,0.82); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); transition: padding .35s ease, background .35s ease; }
   .topbar.scrolled { background: rgba(7,22,41,0.96); }
-  .topbar-inner {
-    max-width: 1180px; margin: 0 auto; padding: 16px 32px;
-    display: flex; align-items: center; justify-content: space-between;
-    transition: padding .35s ease;
-  }
+  .topbar-inner { max-width: 1180px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; transition: padding .35s ease; }
   .topbar.scrolled .topbar-inner { padding: 10px 32px; }
   .brand-mini { display: flex; align-items: center; gap: 12px; cursor: pointer; }
   .brand-mini svg { width: 34px; height: 44px; flex-shrink: 0; }
   .brand-mini .bm-text { display: flex; flex-direction: column; line-height: 1; }
-  .brand-mini .bm-name {
-    font-family: 'Cormorant Garamond', serif; font-weight: 700;
-    font-size: 24px; letter-spacing: 3px; color: #fff;
-  }
-  .brand-mini .bm-sub {
-    font-family: 'Noto Serif TC', serif; font-size: 10px;
-    letter-spacing: 5px; color: var(--gold); margin-top: 3px;
-  }
-  .nav-links { display: flex; gap: 34px; align-items: center; }
-  .nav-links a {
-    color: var(--muted); text-decoration: none; font-size: 14px;
-    letter-spacing: 1px; transition: color .25s; position: relative;
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; left: 0; bottom: -6px; width: 0; height: 1px;
-    background: var(--gold); transition: width .3s ease;
-  }
+  .brand-mini .bm-name { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 24px; letter-spacing: 3px; color: #fff; }
+  .brand-mini .bm-sub { font-family: 'Noto Serif TC', serif; font-size: 10px; letter-spacing: 5px; color: var(--gold); margin-top: 3px; }
+  body[data-lang="sc"] .brand-mini .bm-sub { font-family: 'Noto Serif SC', serif; }
+
+  .nav-right { display: flex; align-items: center; gap: 30px; }
+  .nav-links { display: flex; gap: 30px; align-items: center; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; letter-spacing: 1px; transition: color .25s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 0; height: 1px; background: var(--gold); transition: width .3s ease; }
   .nav-links a:hover { color: var(--gold-bright); }
   .nav-links a:hover::after { width: 100%; }
-  .nav-cta {
-    border: 1px solid var(--gold); color: var(--gold) !important;
-    padding: 9px 22px; border-radius: 2px; transition: all .3s;
-  }
+  .nav-cta { border: 1px solid var(--gold); color: var(--gold) !important; padding: 9px 22px; border-radius: 2px; transition: all .3s; }
   .nav-cta:hover { background: var(--gold); color: var(--navy) !important; }
   .nav-cta::after { display: none; }
+
+  /* language switch */
+  .lang-switch { display: flex; align-items: center; border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+  .lang-switch button { background: none; border: none; color: var(--muted); font-family: inherit; font-size: 13px; letter-spacing: .5px; padding: 7px 13px; cursor: pointer; transition: all .25s; border-right: 1px solid var(--line); }
+  .lang-switch button:last-child { border-right: none; }
+  .lang-switch button:hover { color: var(--gold-bright); }
+  .lang-switch button.active { background: var(--gold); color: var(--navy); font-weight: 700; }
+
   .menu-toggle { display: none; background: none; border: none; color: var(--gold); cursor: pointer; }
-  @media (max-width: 880px) {
-    .nav-links { display: none; }
+  @media (max-width: 980px) {
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: rgba(7,22,41,0.98); padding: 20px 32px; gap: 20px; border-bottom: 1px solid var(--line); }
+    .nav-links.open { display: flex; }
     .menu-toggle { display: block; }
   }
 
-  /* ===== Hero ===== */
-  .hero {
-    position: relative; min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    text-align: center; padding: 140px 32px 90px;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: ''; position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 50% 35%, rgba(201,169,97,0.10), transparent 70%),
-      linear-gradient(160deg, var(--navy-deep), var(--navy) 45%, var(--navy-light));
-    z-index: 0;
-  }
-  /* diagonal corners */
+  /* hero */
+  .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 140px 32px 90px; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 35%, rgba(201,169,97,0.10), transparent 70%), linear-gradient(160deg, var(--navy-deep), var(--navy) 45%, var(--navy-light)); z-index: 0; }
   .hero .diag { position: absolute; z-index: 1; opacity: .6; }
   .hero .diag.t-l { top:0; left:0; width:0; height:0; border-style:solid; border-width:220px 220px 0 0; border-color: var(--navy-light) transparent transparent transparent; }
   .hero .diag.b-r { bottom:0; right:0; width:0; height:0; border-style:solid; border-width:0 0 220px 220px; border-color: transparent transparent var(--navy-light) transparent; }
@@ -121,128 +93,89 @@
   @keyframes twinkle { 0%,100%{opacity:.15;} 50%{opacity:.6;} }
 
   .hero-content { position: relative; z-index: 3; max-width: 880px; }
-
-  .open-badge {
-    display: inline-block; background: var(--gold); color: var(--navy);
-    font-family: 'Noto Serif TC', serif; font-weight: 700;
-    letter-spacing: 8px; font-size: 15px; padding: 9px 30px 9px 38px;
-    border-radius: 30px; margin-bottom: 44px;
-    opacity: 0; transform: translateY(20px);
-    animation: rise .9s ease forwards .2s;
-  }
-
-  .hero-shield { width: 96px; height: 132px; margin: 0 auto 18px;
-    opacity: 0; transform: translateY(20px) scale(.9);
-    animation: rise .9s ease forwards .35s; }
-
-  .hero-name {
-    font-family: 'Cormorant Garamond', serif; font-weight: 700;
-    font-size: clamp(56px, 11vw, 116px); letter-spacing: clamp(8px,2vw,22px);
-    color: #fff; line-height: 1; margin-left: clamp(8px,2vw,22px);
-    opacity: 0; transform: translateY(20px);
-    animation: rise .9s ease forwards .5s;
-  }
-  .hero-tagcn {
-    font-family: 'Noto Serif TC', serif; font-weight: 400;
-    font-size: clamp(20px, 4vw, 30px); letter-spacing: clamp(10px,3vw,26px);
-    color: var(--gold); margin: 18px 0 6px; margin-left: clamp(10px,3vw,26px);
-    opacity: 0; transform: translateY(20px);
-    animation: rise .9s ease forwards .65s;
-  }
-  .hero-rule { width: 220px; height: 1px; background: var(--gold); margin: 26px auto;
-    opacity: 0; animation: fadein 1s ease forwards .8s; }
-  .hero-desc {
-    font-size: clamp(16px, 2.5vw, 20px); color: var(--ink); font-weight: 300;
-    letter-spacing: 1px; max-width: 620px; margin: 0 auto;
-    opacity: 0; transform: translateY(20px);
-    animation: rise .9s ease forwards .9s;
-  }
-  .hero-actions { margin-top: 44px; display: flex; gap: 18px; justify-content: center; flex-wrap: wrap;
-    opacity: 0; transform: translateY(20px); animation: rise .9s ease forwards 1.05s; }
-  .btn {
-    font-family: 'Noto Sans TC', sans-serif; font-size: 15px; letter-spacing: 2px;
-    padding: 15px 38px; border-radius: 2px; text-decoration: none; cursor: pointer;
-    transition: all .3s; display: inline-block; border: 1px solid var(--gold);
-  }
+  .open-badge { display: inline-block; background: var(--gold); color: var(--navy); font-family: 'Noto Serif TC', serif; font-weight: 700; letter-spacing: 8px; font-size: 15px; padding: 9px 30px 9px 38px; border-radius: 30px; margin-bottom: 44px; opacity: 0; transform: translateY(20px); animation: rise .9s ease forwards .2s; }
+  body[data-lang="sc"] .open-badge { font-family: 'Noto Serif SC', serif; }
+  body[data-lang="en"] .open-badge { font-family: 'Cormorant Garamond', serif; letter-spacing: 4px; }
+  .hero-shield { width: 96px; height: 132px; margin: 0 auto 18px; opacity: 0; transform: translateY(20px) scale(.9); animation: rise .9s ease forwards .35s; }
+  .hero-name { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(56px, 11vw, 116px); letter-spacing: clamp(8px,2vw,22px); color: #fff; line-height: 1; margin-left: clamp(8px,2vw,22px); opacity: 0; transform: translateY(20px); animation: rise .9s ease forwards .5s; }
+  .hero-tagcn { font-family: 'Noto Serif TC', serif; font-weight: 400; font-size: clamp(20px, 4vw, 30px); letter-spacing: clamp(10px,3vw,26px); color: var(--gold); margin: 18px 0 6px; margin-left: clamp(10px,3vw,26px); opacity: 0; transform: translateY(20px); animation: rise .9s ease forwards .65s; }
+  body[data-lang="sc"] .hero-tagcn { font-family: 'Noto Serif SC', serif; }
+  body[data-lang="en"] .hero-tagcn { font-family: 'Cormorant Garamond', serif; letter-spacing: clamp(6px,2vw,16px); }
+  .hero-rule { width: 220px; height: 1px; background: var(--gold); margin: 26px auto; opacity: 0; animation: fadein 1s ease forwards .8s; }
+  .hero-desc { font-size: clamp(16px, 2.5vw, 20px); color: var(--ink); font-weight: 300; letter-spacing: 1px; max-width: 660px; margin: 0 auto; opacity: 0; transform: translateY(20px); animation: rise .9s ease forwards .9s; }
+  .hero-actions { margin-top: 44px; display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; opacity: 0; transform: translateY(20px); animation: rise .9s ease forwards 1.05s; }
+  .btn { font-family: inherit; font-size: 15px; letter-spacing: 2px; padding: 15px 38px; border-radius: 2px; text-decoration: none; cursor: pointer; transition: all .3s; display: inline-block; border: 1px solid var(--gold); }
   .btn-primary { background: var(--gold); color: var(--navy); font-weight: 500; }
   .btn-primary:hover { background: var(--gold-bright); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,169,97,.25); }
   .btn-ghost { background: transparent; color: var(--gold); }
   .btn-ghost:hover { background: rgba(201,169,97,.1); transform: translateY(-2px); }
 
-  .scroll-cue { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-    z-index: 3; color: var(--gold); opacity: .6; animation: bob 2s infinite ease-in-out; }
+  .scroll-cue { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 3; color: var(--gold); opacity: .6; animation: bob 2s infinite ease-in-out; }
   @keyframes bob { 0%,100%{transform:translate(-50%,0);} 50%{transform:translate(-50%,8px);} }
-
   @keyframes rise { to { opacity: 1; transform: translateY(0); } }
   @keyframes fadein { to { opacity: 1; } }
 
-  /* ===== Stats ===== */
+  /* stats */
   .stats { background: var(--navy-deep); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 64px 0; }
   .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
   @media (max-width: 760px) { .stats-grid { grid-template-columns: repeat(2,1fr); gap: 36px 16px; } }
   .stat { text-align: center; border-right: 1px solid var(--line); padding: 0 12px; }
   .stat:last-child { border-right: none; }
   @media (max-width: 760px) { .stat:nth-child(2){border-right:none;} }
-  .stat-num { font-family: 'Cormorant Garamond', serif; font-weight: 700;
-    font-size: clamp(40px,6vw,58px); color: var(--gold); line-height: 1; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(38px,6vw,56px); color: var(--gold); line-height: 1; }
   .stat-label { font-size: 14px; color: var(--muted); margin-top: 10px; letter-spacing: 1px; }
 
-  /* ===== Section base ===== */
   section.block { padding: 100px 0; position: relative; }
   .sec-head { text-align: center; margin-bottom: 64px; }
   .sec-eyebrow { font-family:'Noto Serif TC',serif; color: var(--gold); letter-spacing: 6px; font-size: 14px; margin-bottom: 14px; }
+  body[data-lang="sc"] .sec-eyebrow { font-family:'Noto Serif SC',serif; }
+  body[data-lang="en"] .sec-eyebrow { font-family:'Cormorant Garamond',serif; letter-spacing: 4px; font-size: 16px; }
   .sec-eyebrow::before, .sec-eyebrow::after { content:'\\25C6'; font-size: 9px; margin: 0 14px; vertical-align: middle; }
   .sec-title { font-family:'Noto Serif TC',serif; font-weight: 700; font-size: clamp(28px,5vw,42px); color: #fff; letter-spacing: 2px; }
-  .sec-sub { color: var(--muted); margin-top: 16px; font-weight: 300; max-width: 640px; margin-left:auto; margin-right:auto; }
+  body[data-lang="sc"] .sec-title { font-family:'Noto Serif SC',serif; }
+  body[data-lang="en"] .sec-title { font-family:'Cormorant Garamond',serif; }
+  .sec-sub { color: var(--muted); margin-top: 16px; font-weight: 300; max-width: 660px; margin-left:auto; margin-right:auto; }
 
-  /* reveal on scroll */
   .reveal { opacity: 0; transform: translateY(36px); transition: opacity .8s ease, transform .8s ease; }
   .reveal.in { opacity: 1; transform: translateY(0); }
 
-  /* ===== About ===== */
+  /* about */
   .about-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: center; }
   @media (max-width: 880px){ .about-grid{ grid-template-columns: 1fr; gap: 40px; } }
-  .founder-card {
-    background: linear-gradient(155deg, var(--navy-light), var(--navy-deep));
-    border: 1px solid var(--line); border-radius: 4px; padding: 48px 40px;
-    position: relative; overflow: hidden;
-  }
+  .founder-card { background: linear-gradient(155deg, var(--navy-light), var(--navy-deep)); border: 1px solid var(--line); border-radius: 4px; padding: 48px 40px; position: relative; overflow: hidden; }
   .founder-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:3px; background: linear-gradient(90deg, var(--gold), transparent); }
   .founder-shield { width: 70px; height: 96px; margin-bottom: 24px; }
   .founder-name { font-family:'Noto Serif TC',serif; font-weight:700; font-size: 30px; color:#fff; margin-bottom: 6px; }
+  body[data-lang="sc"] .founder-name { font-family:'Noto Serif SC',serif; }
+  body[data-lang="en"] .founder-name { font-family:'Cormorant Garamond',serif; }
   .founder-role { color: var(--gold); font-size: 15px; letter-spacing: 1px; margin-bottom: 20px; }
   .founder-creds { display:flex; flex-wrap:wrap; gap: 8px; }
   .cred-chip { font-size: 12px; letter-spacing: 1px; color: var(--gold); border: 1px solid var(--line); padding: 5px 12px; border-radius: 2px; }
   .about-text p { color: var(--ink); font-weight: 300; margin-bottom: 22px; font-size: 16.5px; }
   .about-text p strong { color: var(--gold-bright); font-weight: 500; }
-
   .cred-list { margin-top: 30px; border-top: 1px solid var(--line); }
-  .cred-row { display: grid; grid-template-columns: 140px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .cred-row { display: grid; grid-template-columns: 150px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); }
   @media (max-width:520px){ .cred-row{ grid-template-columns: 1fr; gap: 4px; } }
   .cred-row .k { color: var(--gold); font-weight: 500; font-size: 14px; letter-spacing: 1px; }
   .cred-row .v { color: var(--ink); font-weight: 300; font-size: 14.5px; }
 
-  /* ===== Services ===== */
+  /* services */
   .svc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
   @media (max-width: 980px){ .svc-grid{ grid-template-columns: repeat(2,1fr);} }
   @media (max-width: 620px){ .svc-grid{ grid-template-columns: 1fr;} }
-  .svc-card {
-    background: linear-gradient(160deg, var(--navy-light), var(--navy-deep));
-    border: 1px solid var(--line); border-radius: 4px; padding: 38px 32px;
-    transition: transform .4s ease, border-color .4s ease, box-shadow .4s ease;
-    position: relative; overflow: hidden;
-  }
+  .svc-card { background: linear-gradient(160deg, var(--navy-light), var(--navy-deep)); border: 1px solid var(--line); border-radius: 4px; padding: 38px 32px; transition: transform .4s ease, border-color .4s ease, box-shadow .4s ease; position: relative; overflow: hidden; }
   .svc-card:hover { transform: translateY(-8px); border-color: var(--gold); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
   .svc-card::after { content:''; position:absolute; inset:0; background: radial-gradient(circle at 100% 0%, rgba(201,169,97,.08), transparent 50%); opacity:0; transition:opacity .4s; }
   .svc-card:hover::after { opacity: 1; }
   .svc-num { font-family:'Cormorant Garamond',serif; font-size: 44px; font-weight:600; color: rgba(201,169,97,.4); line-height:1; }
-  .svc-icon { width: 38px; height: 38px; margin-bottom: 16px; }
   .svc-name { font-family:'Noto Serif TC',serif; font-weight: 600; font-size: 21px; color:#fff; margin: 14px 0 16px; }
+  body[data-lang="sc"] .svc-name { font-family:'Noto Serif SC',serif; }
+  body[data-lang="en"] .svc-name { font-family:'Cormorant Garamond',serif; font-size: 24px; }
   .svc-list { list-style: none; }
   .svc-list li { color: var(--muted); font-size: 14px; font-weight: 300; padding: 5px 0 5px 18px; position: relative; line-height: 1.6; }
   .svc-list li::before { content:''; position:absolute; left:0; top:13px; width:5px; height:5px; background: var(--gold); transform: rotate(45deg); }
 
-  /* ===== Commitment ===== */
+  /* commitment */
   .commit { background: var(--navy-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .commit-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
   @media (max-width:880px){ .commit-grid{ grid-template-columns: repeat(2,1fr);} }
@@ -252,12 +185,16 @@
   .commit-item .ci-head { display:flex; align-items:center; gap: 12px; margin-bottom: 12px; }
   .commit-item .ci-check { color: var(--gold); font-size: 20px; }
   .commit-item .ci-title { font-family:'Noto Serif TC',serif; font-weight:600; font-size: 18px; color:#fff; }
+  body[data-lang="sc"] .commit-item .ci-title { font-family:'Noto Serif SC',serif; }
+  body[data-lang="en"] .commit-item .ci-title { font-family:'Cormorant Garamond',serif; font-size: 20px; }
   .commit-item p { color: var(--muted); font-size: 14px; font-weight: 300; }
 
-  /* ===== Contact ===== */
+  /* contact */
   .contact-inner { display:grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
   @media (max-width: 880px){ .contact-inner{ grid-template-columns:1fr; gap:40px;} }
   .contact-left h2 { font-family:'Noto Serif TC',serif; font-weight:700; font-size: clamp(28px,4vw,40px); color:#fff; line-height:1.3; margin-bottom: 20px; }
+  body[data-lang="sc"] .contact-left h2 { font-family:'Noto Serif SC',serif; }
+  body[data-lang="en"] .contact-left h2 { font-family:'Cormorant Garamond',serif; }
   .contact-left h2 .gold { color: var(--gold); }
   .contact-left p { color: var(--muted); font-weight: 300; margin-bottom: 12px; }
   .contact-card { background: linear-gradient(155deg,var(--navy-light),var(--navy-deep)); border:1px solid var(--line); border-radius:4px; overflow:hidden; }
@@ -270,7 +207,6 @@
   .contact-row .cr-v.gold { color: var(--gold-bright); }
   a.contact-row { text-decoration: none; }
 
-  /* ===== Footer ===== */
   footer { background: var(--navy-deep); padding: 50px 0 36px; border-top: 1px solid var(--line); text-align:center; }
   .foot-brand { display:flex; align-items:center; justify-content:center; gap: 12px; margin-bottom: 18px; }
   .foot-brand svg { width: 30px; height: 40px; }
@@ -282,253 +218,344 @@
   ::selection { background: var(--gold); color: var(--navy); }
 </style>
 </head>
-<body>
+<body data-lang="tc">
 
 <div class="corner-deco tl"></div>
 <div class="corner-deco tr"></div>
 <div class="corner-deco bl"></div>
 <div class="corner-deco br"></div>
 
-<!-- ===== TOP BAR ===== -->
+<!-- TOP BAR -->
 <header class="topbar" id="topbar">
   <div class="topbar-inner">
     <div class="brand-mini" onclick="scrollTo({top:0,behavior:'smooth'})">
       <svg viewBox="0 0 130 175"><path d="M0 0 L130 0 L130 110 L65 175 L0 110 Z" fill="#0A1F3D" stroke="#C9A961" stroke-width="4"/><line x1="40" y1="55" x2="65" y2="80" stroke="#C9A961" stroke-width="2.5"/><line x1="90" y1="55" x2="65" y2="80" stroke="#C9A961" stroke-width="2.5"/><line x1="40" y1="55" x2="90" y2="55" stroke="#C9A961" stroke-width="2.5"/><line x1="40" y1="55" x2="65" y2="115" stroke="#C9A961" stroke-width="2.5"/><line x1="90" y1="55" x2="65" y2="115" stroke="#C9A961" stroke-width="2.5"/><line x1="65" y1="80" x2="65" y2="115" stroke="#C9A961" stroke-width="2.5"/><circle cx="65" cy="40" r="11" fill="#C9A961"/><circle cx="35" cy="78" r="11" fill="#C9A961"/><circle cx="95" cy="78" r="11" fill="#C9A961"/><circle cx="65" cy="115" r="11" fill="#C9A961"/><circle cx="65" cy="148" r="14" fill="#fff" stroke="#C9A961" stroke-width="1.5"/><path d="M57 148 L63 154 L74 142" fill="none" stroke="#0A1F3D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div class="bm-text">
         <span class="bm-name">ECANET</span>
-        <span class="bm-sub">合規諮詢</span>
+        <span class="bm-sub" data-i18n="brand_sub">合規諮詢</span>
       </div>
     </div>
-    <nav class="nav-links">
-      <a href="#about">關於我們</a>
-      <a href="#services">服務範圍</a>
-      <a href="#commitment">服務承諾</a>
-      <a href="#contact" class="nav-cta">聯絡我們</a>
-    </nav>
-    <button class="menu-toggle" onclick="document.querySelector('.nav-links').style.display = (document.querySelector('.nav-links').style.display==='flex'?'none':'flex')" aria-label="選單">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
+    <div class="nav-right">
+      <nav class="nav-links" id="navlinks">
+        <a href="#about" data-i18n="nav_about">關於我們</a>
+        <a href="#services" data-i18n="nav_services">服務範圍</a>
+        <a href="#commitment" data-i18n="nav_commit">服務承諾</a>
+        <a href="#contact" class="nav-cta" data-i18n="nav_contact">聯絡我們</a>
+      </nav>
+      <div class="lang-switch">
+        <button data-setlang="tc" class="active">繁</button>
+        <button data-setlang="sc">简</button>
+        <button data-setlang="en">EN</button>
+      </div>
+      <button class="menu-toggle" onclick="document.getElementById('navlinks').classList.toggle('open')" aria-label="menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 
-<!-- ===== HERO ===== -->
+<!-- HERO -->
 <section class="hero">
   <div class="diag t-l"></div>
   <div class="diag b-r"></div>
   <div class="stars" id="stars"></div>
   <div class="hero-content">
-    <div class="open-badge">正 式 開 業</div>
+    <div class="open-badge" data-i18n="hero_badge">正 式 開 業</div>
     <svg class="hero-shield" viewBox="0 0 140 195"><path d="M0 0 L140 0 L140 120 L70 195 L0 120 Z" fill="#0A1F3D" stroke="#C9A961" stroke-width="3"/><line x1="42" y1="60" x2="70" y2="88" stroke="#C9A961" stroke-width="2"/><line x1="98" y1="60" x2="70" y2="88" stroke="#C9A961" stroke-width="2"/><line x1="42" y1="60" x2="98" y2="60" stroke="#C9A961" stroke-width="2"/><line x1="42" y1="60" x2="70" y2="128" stroke="#C9A961" stroke-width="2"/><line x1="98" y1="60" x2="70" y2="128" stroke="#C9A961" stroke-width="2"/><line x1="70" y1="88" x2="70" y2="128" stroke="#C9A961" stroke-width="2"/><circle cx="70" cy="42" r="12" fill="#C9A961"/><circle cx="38" cy="84" r="12" fill="#C9A961"/><circle cx="102" cy="84" r="12" fill="#C9A961"/><circle cx="70" cy="128" r="12" fill="#C9A961"/><circle cx="70" cy="162" r="14" fill="#fff" stroke="#C9A961" stroke-width="1.5"/><path d="M62 162 L68 168 L79 156" fill="none" stroke="#0A1F3D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <h1 class="hero-name">ECANET</h1>
-    <div class="hero-tagcn">合 規 諮 詢</div>
+    <div class="hero-tagcn" data-i18n="hero_tag">合 規 諮 詢</div>
     <div class="hero-rule"></div>
-    <p class="hero-desc">為資產管理公司、基金及持牌法團<br>提供獨立合規、反洗錢及監管諮詢</p>
+    <p class="hero-desc" data-i18n="hero_desc">為資產管理公司、基金及持牌法團<br>提供獨立合規、反洗錢及監管諮詢</p>
     <div class="hero-actions">
-      <a href="#contact" class="btn btn-primary">預約免費諮詢</a>
-      <a href="#services" class="btn btn-ghost">了解服務範圍</a>
+      <a href="#contact" class="btn btn-primary" data-i18n="hero_cta1">預約免費諮詢</a>
+      <a href="#services" class="btn btn-ghost" data-i18n="hero_cta2">了解服務範圍</a>
     </div>
   </div>
-  <div class="scroll-cue">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-  </div>
+  <div class="scroll-cue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
 </section>
 
-<!-- ===== STATS ===== -->
+<!-- STATS -->
 <section class="stats">
   <div class="wrap">
     <div class="stats-grid reveal">
-      <div class="stat"><div class="stat-num">18+</div><div class="stat-label">年專業經驗</div></div>
-      <div class="stat"><div class="stat-num">100+</div><div class="stat-label">基金項目審閱經驗</div></div>
-      <div class="stat"><div class="stat-num">5000萬+</div><div class="stat-label">監管罰款成功節省</div></div>
-      <div class="stat"><div class="stat-num">300+</div><div class="stat-label">監管機構申請個案</div></div>
+      <div class="stat"><div class="stat-num">18+</div><div class="stat-label" data-i18n="stat1">年專業經驗</div></div>
+      <div class="stat"><div class="stat-num">100+</div><div class="stat-label" data-i18n="stat2">基金項目審閱經驗</div></div>
+      <div class="stat"><div class="stat-num" data-i18n="stat3_num">5000萬+</div><div class="stat-label" data-i18n="stat3">監管罰款成功節省</div></div>
+      <div class="stat"><div class="stat-num">300+</div><div class="stat-label" data-i18n="stat4">監管機構申請個案</div></div>
     </div>
   </div>
 </section>
 
-<!-- ===== ABOUT ===== -->
+<!-- ABOUT -->
 <section class="block" id="about">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-eyebrow">關於我們</div>
-      <h2 class="sec-title">創辦人簡介</h2>
-      <p class="sec-sub">由資深合規專家親自主理,逾二十年合規領域實戰經驗,為企業客戶提供量身定制之專業解決方案。</p>
+      <div class="sec-eyebrow" data-i18n="about_eyebrow">關於我們</div>
+      <h2 class="sec-title" data-i18n="about_title">創辦人簡介</h2>
+      <p class="sec-sub" data-i18n="about_sub">由資深合規專家親自主理,逾二十年合規領域實戰經驗,為企業客戶提供量身定制之專業解決方案。</p>
     </div>
     <div class="about-grid">
       <div class="founder-card reveal">
         <svg class="founder-shield" viewBox="0 0 140 195"><path d="M0 0 L140 0 L140 120 L70 195 L0 120 Z" fill="#0A1F3D" stroke="#C9A961" stroke-width="3"/><line x1="42" y1="60" x2="70" y2="88" stroke="#C9A961" stroke-width="2"/><line x1="98" y1="60" x2="70" y2="88" stroke="#C9A961" stroke-width="2"/><line x1="42" y1="60" x2="98" y2="60" stroke="#C9A961" stroke-width="2"/><line x1="42" y1="60" x2="70" y2="128" stroke="#C9A961" stroke-width="2"/><line x1="98" y1="60" x2="70" y2="128" stroke="#C9A961" stroke-width="2"/><line x1="70" y1="88" x2="70" y2="128" stroke="#C9A961" stroke-width="2"/><circle cx="70" cy="42" r="12" fill="#C9A961"/><circle cx="38" cy="84" r="12" fill="#C9A961"/><circle cx="102" cy="84" r="12" fill="#C9A961"/><circle cx="70" cy="128" r="12" fill="#C9A961"/><circle cx="70" cy="162" r="14" fill="#fff" stroke="#C9A961" stroke-width="1.5"/><path d="M62 162 L68 168 L79 156" fill="none" stroke="#0A1F3D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <div class="founder-name">陳先生</div>
-        <div class="founder-role">創辦人 / 主理顧問</div>
+        <div class="founder-name" data-i18n="founder_name">陳先生</div>
+        <div class="founder-role" data-i18n="founder_role">創辦人 / 主理顧問</div>
         <div class="founder-creds">
           <span class="cred-chip">CFA</span>
           <span class="cred-chip">FRM</span>
           <span class="cred-chip">CPA</span>
-          <span class="cred-chip">中國法學</span>
+          <span class="cred-chip" data-i18n="cred_law">中國法學</span>
           <span class="cred-chip">MIT Data Science</span>
         </div>
         <div class="cred-list">
-          <div class="cred-row"><span class="k">從業年資</span><span class="v">逾 18 年金融服務業合規管理經驗</span></div>
-          <div class="cred-row"><span class="k">現任職務</span><span class="v">知名資產財富管理機構之合規總監</span></div>
-          <div class="cred-row"><span class="k">管轄範疇</span><span class="v">港 · 新 · 澳 · 加 · 美 · 澳門 · 台</span></div>
-          <div class="cred-row"><span class="k">語言能力</span><span class="v">英文 · 廣東話 · 普通話</span></div>
+          <div class="cred-row"><span class="k" data-i18n="cr1_k">從業年資</span><span class="v" data-i18n="cr1_v">逾 18 年金融服務業合規管理經驗</span></div>
+          <div class="cred-row"><span class="k" data-i18n="cr2_k">現任職務</span><span class="v" data-i18n="cr2_v">知名資產財富管理機構之合規總監</span></div>
+          <div class="cred-row"><span class="k" data-i18n="cr3_k">管轄範疇</span><span class="v" data-i18n="cr3_v">港 · 新 · 澳 · 加 · 美 · 澳門 · 台</span></div>
+          <div class="cred-row"><span class="k" data-i18n="cr4_k">語言能力</span><span class="v" data-i18n="cr4_v">英文 · 廣東話 · 普通話</span></div>
         </div>
       </div>
       <div class="about-text reveal">
-        <p>陳先生為本公司創辦人及主理顧問,擁有超過 <strong>18 年</strong>於亞太區金融服務業之合規管理及監管事務經驗,專長涵蓋香港證監會、保險業監管局、開曼群島金融管理局之監管合規、反洗錢(AML)及基金管治。陳先生曾成功主導多項複雜之監管檢查項目,並以「零罰則」紀錄完美結案,展現卓越之監管應對能力。</p>
-        <p>陳先生曾擔任管理資產規模逾 <strong>5 億美元</strong> 之知名資產財富管理機構之合規總監,並於香港、新加坡、澳洲、加拿大及美國等多個司法管轄區建立合規架構,在持牌機構之牌照申請、AML、基金管治、虛擬資產合規及監管溝通等方面累積豐富實戰經驗。</p>
-        <p>陳先生結合深厚之<strong>法律專業</strong>(中國法學學位)、<strong>財務專業</strong>(CPA、CFA、FRM)及<strong>前沿科技知識</strong>(MIT 應用數據科學),為客戶提供以商業實務為基礎、兼顧風險管理之合規解決方案。</p>
+        <p data-i18n="about_p1">陳先生為本公司創辦人及主理顧問,擁有超過 <strong>18 年</strong>於亞太區金融服務業之合規管理及監管事務經驗,專長涵蓋香港證監會、保險業監管局、開曼群島金融管理局之監管合規、反洗錢(AML)及基金管治。陳先生曾成功主導多項複雜之監管檢查項目,並以「零罰則」紀錄完美結案,展現卓越之監管應對能力。</p>
+        <p data-i18n="about_p2">陳先生曾擔任管理資產規模逾 <strong>5 億美元</strong> 之知名資產財富管理機構之合規總監,並於香港、新加坡、澳洲、加拿大及美國等多個司法管轄區建立合規架構,在持牌機構之牌照申請、AML、基金管治、虛擬資產合規及監管溝通等方面累積豐富實戰經驗。</p>
+        <p data-i18n="about_p3">陳先生結合深厚之<strong>法律專業</strong>(中國法學學位)、<strong>財務專業</strong>(CPA、CFA、FRM)及<strong>前沿科技知識</strong>(MIT 應用數據科學),為客戶提供以商業實務為基礎、兼顧風險管理之合規解決方案。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== SERVICES ===== -->
+<!-- SERVICES -->
 <section class="block" id="services" style="background:var(--navy-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-eyebrow">業務範圍</div>
-      <h2 class="sec-title">服務範圍</h2>
-      <p class="sec-sub">六大類別之專業服務,由具備相應專業資歷及經驗之人員負責處理,確保服務質素及合規水平。</p>
+      <div class="sec-eyebrow" data-i18n="svc_eyebrow">業務範圍</div>
+      <h2 class="sec-title" data-i18n="svc_title">服務範圍</h2>
+      <p class="sec-sub" data-i18n="svc_sub">六大類別之專業服務,由具備相應專業資歷及經驗之人員負責處理,確保服務質素及合規水平。</p>
     </div>
     <div class="svc-grid">
-
-      <div class="svc-card reveal">
-        <div class="svc-num">01</div>
-        <div class="svc-name">財務諮詢及做帳</div>
-        <ul class="svc-list">
-          <li>簿記及月度 / 季度 / 年度會計處理</li>
-          <li>編製財務報表(符合 HKFRS)</li>
-          <li>銀行月結單核對及財務分析</li>
-          <li>預算編製及現金流預測</li>
-          <li>薪酬計算及強積金(MPF)管理</li>
-        </ul>
-      </div>
-
-      <div class="svc-card reveal">
-        <div class="svc-num">02</div>
-        <div class="svc-name">公司秘書服務</div>
-        <ul class="svc-list">
-          <li>擔任公司法定秘書</li>
-          <li>周年申報表(NAR1)及 SCR 維護</li>
-          <li>董事 / 股東 / 股本變動申報</li>
-          <li>股權轉讓及印花稅申報</li>
-          <li>公司註銷及清盤協助</li>
-        </ul>
-      </div>
-
-      <div class="svc-card reveal">
-        <div class="svc-num">03</div>
-        <div class="svc-name">公司註冊及企業架構</div>
-        <ul class="svc-list">
-          <li>香港有限公司註冊及成立</li>
-          <li>海外公司註冊(BVI、Cayman 等)</li>
-          <li>銀行開戶協助及 KYC 文件整理</li>
-          <li>信託架構設計</li>
-          <li>跨境企業架構諮詢</li>
-        </ul>
-      </div>
-
-      <div class="svc-card reveal">
-        <div class="svc-num">04</div>
-        <div class="svc-name">稅務諮詢及申報</div>
-        <ul class="svc-list">
-          <li>利得稅、薪俸稅、物業稅申報</li>
-          <li>稅務計算及稅務規劃建議</li>
-          <li>回應稅務局查詢及反對評稅</li>
-          <li>離岸利潤申索協助</li>
-          <li>雙重課稅寬免申請</li>
-        </ul>
-      </div>
-
-      <div class="svc-card reveal">
-        <div class="svc-num">05</div>
-        <div class="svc-name">審計服務</div>
-        <ul class="svc-list">
-          <li>法定審計(根據《公司條例》)</li>
-          <li>協調獨立執業會計師(CPA)</li>
-          <li>審計前財務資料整理及準備</li>
-          <li>審計調整分錄處理</li>
-          <li>特別審計安排(重組 / 盡職審計)</li>
-        </ul>
-      </div>
-
-      <div class="svc-card reveal">
-        <div class="svc-num">06</div>
-        <div class="svc-name">合規諮詢服務</div>
-        <ul class="svc-list">
-          <li>SFC 持牌機構持續合規諮詢</li>
-          <li>SFC 牌照申請及 RO / LR 申報</li>
-          <li>AML / CFT 政策制定及培訓</li>
-          <li>機構 ML / TF 風險評估(IRA)</li>
-          <li>TCSP 及虛擬資產合規支援</li>
-        </ul>
-      </div>
-
+      <div class="svc-card reveal"><div class="svc-num">01</div><div class="svc-name" data-i18n="svc1_name">財務諮詢及做帳</div><ul class="svc-list">
+        <li data-i18n="svc1_1">簿記及月度 / 季度 / 年度會計處理</li><li data-i18n="svc1_2">編製財務報表(符合 HKFRS)</li><li data-i18n="svc1_3">銀行月結單核對及財務分析</li><li data-i18n="svc1_4">預算編製及現金流預測</li><li data-i18n="svc1_5">薪酬計算及強積金(MPF)管理</li></ul></div>
+      <div class="svc-card reveal"><div class="svc-num">02</div><div class="svc-name" data-i18n="svc2_name">公司秘書服務</div><ul class="svc-list">
+        <li data-i18n="svc2_1">擔任公司法定秘書</li><li data-i18n="svc2_2">周年申報表(NAR1)及 SCR 維護</li><li data-i18n="svc2_3">董事 / 股東 / 股本變動申報</li><li data-i18n="svc2_4">股權轉讓及印花稅申報</li><li data-i18n="svc2_5">公司註銷及清盤協助</li></ul></div>
+      <div class="svc-card reveal"><div class="svc-num">03</div><div class="svc-name" data-i18n="svc3_name">公司註冊及企業架構</div><ul class="svc-list">
+        <li data-i18n="svc3_1">香港有限公司註冊及成立</li><li data-i18n="svc3_2">海外公司註冊(BVI、Cayman 等)</li><li data-i18n="svc3_3">銀行開戶協助及 KYC 文件整理</li><li data-i18n="svc3_4">信託架構設計</li><li data-i18n="svc3_5">跨境企業架構諮詢</li></ul></div>
+      <div class="svc-card reveal"><div class="svc-num">04</div><div class="svc-name" data-i18n="svc4_name">稅務諮詢及申報</div><ul class="svc-list">
+        <li data-i18n="svc4_1">利得稅、薪俸稅、物業稅申報</li><li data-i18n="svc4_2">稅務計算及稅務規劃建議</li><li data-i18n="svc4_3">回應稅務局查詢及反對評稅</li><li data-i18n="svc4_4">離岸利潤申索協助</li><li data-i18n="svc4_5">雙重課稅寬免申請</li></ul></div>
+      <div class="svc-card reveal"><div class="svc-num">05</div><div class="svc-name" data-i18n="svc5_name">審計服務</div><ul class="svc-list">
+        <li data-i18n="svc5_1">法定審計(根據《公司條例》)</li><li data-i18n="svc5_2">協調獨立執業會計師(CPA)</li><li data-i18n="svc5_3">審計前財務資料整理及準備</li><li data-i18n="svc5_4">審計調整分錄處理</li><li data-i18n="svc5_5">特別審計安排(重組 / 盡職審計)</li></ul></div>
+      <div class="svc-card reveal"><div class="svc-num">06</div><div class="svc-name" data-i18n="svc6_name">合規諮詢服務</div><ul class="svc-list">
+        <li data-i18n="svc6_1">SFC 持牌機構持續合規諮詢</li><li data-i18n="svc6_2">SFC 牌照申請及 RO / LR 申報</li><li data-i18n="svc6_3">AML / CFT 政策制定及培訓</li><li data-i18n="svc6_4">機構 ML / TF 風險評估(IRA)</li><li data-i18n="svc6_5">TCSP 及虛擬資產合規支援</li></ul></div>
     </div>
   </div>
 </section>
 
-<!-- ===== COMMITMENT ===== -->
+<!-- COMMITMENT -->
 <section class="block commit" id="commitment">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-eyebrow">我們的承諾</div>
-      <h2 class="sec-title">服務承諾</h2>
+      <div class="sec-eyebrow" data-i18n="commit_eyebrow">我們的承諾</div>
+      <h2 class="sec-title" data-i18n="commit_title">服務承諾</h2>
     </div>
     <div class="commit-grid">
-      <div class="commit-item reveal"><div class="ci-head"><span class="ci-check">&#10003;</span><span class="ci-title">專業經驗</span></div><p>核心團隊擁有逾二十年合規及香港會計稅務實戰經驗,深諳監管要求與業界實務。</p></div>
-      <div class="commit-item reveal"><div class="ci-head"><span class="ci-check">&#10003;</span><span class="ci-title">一站式服務</span></div><p>由日常做帳、稅務申報,至公司秘書及合規諮詢,全方位覆蓋企業所需。</p></div>
-      <div class="commit-item reveal"><div class="ci-head"><span class="ci-check">&#10003;</span><span class="ci-title">收費透明</span></div><p>所有服務收費清晰列明,無隱藏費用,客戶可按實際需求選擇合適方案。</p></div>
-      <div class="commit-item reveal"><div class="ci-head"><span class="ci-check">&#10003;</span><span class="ci-title">保密原則</span></div><p>嚴格遵守客戶資料保密原則,所有資料按香港《個人資料(私隱)條例》處理。</p></div>
-      <div class="commit-item reveal"><div class="ci-head"><span class="ci-check">&#10003;</span><span class="ci-title">高效執行</span></div><p>結合數字化工具與專業人員跟進,確保各類申報、簿記及諮詢準時完成。</p></div>
-      <div class="commit-item reveal"><div class="ci-head"><span class="ci-check">&#10003;</span><span class="ci-title">持續支援</span></div><p>提供長期顧問支援,協助客戶應對監管環境及稅務政策變化。</p></div>
+      <div class="commit-item reveal"><div class="ci-head"><span class="ci-check">&#10003;</span><span class="ci-title" data-i18n="cm1_t">專業經驗</span></div><p data-i18n="cm1_d">核心團隊擁有逾二十年合規及香港會計稅務實戰經驗,深諳監管要求與業界實務。</p></div>
+      <div class="commit-item reveal"><div class="ci-head"><span class="ci-check">&#10003;</span><span class="ci-title" data-i18n="cm2_t">一站式服務</span></div><p data-i18n="cm2_d">由日常做帳、稅務申報,至公司秘書及合規諮詢,全方位覆蓋企業所需。</p></div>
+      <div class="commit-item reveal"><div class="ci-head"><span class="ci-check">&#10003;</span><span class="ci-title" data-i18n="cm3_t">收費透明</span></div><p data-i18n="cm3_d">所有服務收費清晰列明,無隱藏費用,客戶可按實際需求選擇合適方案。</p></div>
+      <div class="commit-item reveal"><div class="ci-head"><span class="ci-check">&#10003;</span><span class="ci-title" data-i18n="cm4_t">保密原則</span></div><p data-i18n="cm4_d">嚴格遵守客戶資料保密原則,所有資料按香港《個人資料(私隱)條例》處理。</p></div>
+      <div class="commit-item reveal"><div class="ci-head"><span class="ci-check">&#10003;</span><span class="ci-title" data-i18n="cm5_t">高效執行</span></div><p data-i18n="cm5_d">結合數字化工具與專業人員跟進,確保各類申報、簿記及諮詢準時完成。</p></div>
+      <div class="commit-item reveal"><div class="ci-head"><span class="ci-check">&#10003;</span><span class="ci-title" data-i18n="cm6_t">持續支援</span></div><p data-i18n="cm6_d">提供長期顧問支援,協助客戶應對監管環境及稅務政策變化。</p></div>
     </div>
   </div>
 </section>
 
-<!-- ===== CONTACT ===== -->
+<!-- CONTACT -->
 <section class="block" id="contact">
   <div class="wrap">
     <div class="contact-inner">
       <div class="contact-left reveal">
-        <h2>與您並肩,<br><span class="gold">共同守護與成長</span></h2>
-        <p>如閣下有意了解更多服務詳情,或安排免費初步諮詢,歡迎隨時透過以下方式聯絡我們。</p>
-        <p>我們提供靈活的諮詢時間,可透過 WhatsApp 或微信隨時交流。</p>
+        <h2 data-i18n="contact_h">與您並肩,<br><span class="gold">共同守護與成長</span></h2>
+        <p data-i18n="contact_p1">如閣下有意了解更多服務詳情,或安排免費初步諮詢,歡迎隨時透過以下方式聯絡我們。</p>
+        <p data-i18n="contact_p2">我們提供靈活的諮詢時間,可透過 WhatsApp 或微信隨時交流。</p>
       </div>
       <div class="contact-card reveal">
         <a class="contact-row" href="mailto:info@ecanet.com.hk">
           <svg class="cr-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
-          <div><div class="cr-k">電郵 EMAIL</div><div class="cr-v gold">info@ecanet.com.hk</div></div>
+          <div><div class="cr-k" data-i18n="ct_email">電郵 EMAIL</div><div class="cr-v gold">info@ecanet.com.hk</div></div>
         </a>
         <a class="contact-row" href="https://wa.me/85284930718" target="_blank" rel="noopener">
           <svg class="cr-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          <div><div class="cr-k">WHATSAPP / 電話</div><div class="cr-v gold">(+852) 8493 0718</div></div>
+          <div><div class="cr-k" data-i18n="ct_wa">WHATSAPP / 電話</div><div class="cr-v gold">(+852) 8493 0718</div></div>
         </a>
         <div class="contact-row">
           <svg class="cr-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 13c-3.3 0-6-2.2-6-5s2.7-5 6-5 6 2.2 6 5a5 5 0 0 1-.4 2"/><path d="M16 9c2.8 0 5 1.9 5 4.2 0 1.3-.7 2.5-1.8 3.3l.6 2-2-1a6.5 6.5 0 0 1-1.8.3c-2.8 0-5-1.9-5-4.2S13.2 9 16 9z"/></svg>
-          <div><div class="cr-k">微信 WECHAT ID</div><div class="cr-v gold">SimonCHANHK007</div></div>
+          <div><div class="cr-k" data-i18n="ct_wc">微信 WECHAT ID</div><div class="cr-v gold">SimonCHANHK007</div></div>
         </div>
         <div class="contact-row">
           <svg class="cr-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <div><div class="cr-k">立足 BASED IN</div><div class="cr-v">香港 Hong Kong SAR</div></div>
+          <div><div class="cr-k" data-i18n="ct_loc">立足 BASED IN</div><div class="cr-v" data-i18n="ct_loc_v">香港 Hong Kong SAR</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
+<!-- FOOTER -->
 <footer>
   <div class="wrap">
     <div class="foot-brand">
       <svg viewBox="0 0 130 175"><path d="M0 0 L130 0 L130 110 L65 175 L0 110 Z" fill="#0A1F3D" stroke="#C9A961" stroke-width="4"/><line x1="40" y1="55" x2="65" y2="80" stroke="#C9A961" stroke-width="2.5"/><line x1="90" y1="55" x2="65" y2="80" stroke="#C9A961" stroke-width="2.5"/><line x1="40" y1="55" x2="90" y2="55" stroke="#C9A961" stroke-width="2.5"/><line x1="40" y1="55" x2="65" y2="115" stroke="#C9A961" stroke-width="2.5"/><line x1="90" y1="55" x2="65" y2="115" stroke="#C9A961" stroke-width="2.5"/><line x1="65" y1="80" x2="65" y2="115" stroke="#C9A961" stroke-width="2.5"/><circle cx="65" cy="40" r="11" fill="#C9A961"/><circle cx="35" cy="78" r="11" fill="#C9A961"/><circle cx="95" cy="78" r="11" fill="#C9A961"/><circle cx="65" cy="115" r="11" fill="#C9A961"/><circle cx="65" cy="148" r="14" fill="#fff" stroke="#C9A961" stroke-width="1.5"/><path d="M57 148 L63 154 L74 142" fill="none" stroke="#0A1F3D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span class="fb-name">ECANET</span>
     </div>
-    <p class="foot-disc">本網站所載內容僅供參考之用,並不構成正式服務合約或法律意見。本公司並非律師事務所;審計服務由獨立執業會計師(CPA)負責執行。所有牌照申請及合規事宜之最終批核權屬於相關監管機構。</p>
+    <p class="foot-disc" data-i18n="foot_disc">本網站所載內容僅供參考之用,並不構成正式服務合約或法律意見。本公司並非律師事務所;審計服務由獨立執業會計師(CPA)負責執行。所有牌照申請及合規事宜之最終批核權屬於相關監管機構。</p>
     <p class="foot-meta">© <span id="year"></span> ECANET International Company Limited. All Rights Reserved.&nbsp;&nbsp;|&nbsp;&nbsp; <a href="mailto:info@ecanet.com.hk">info@ecanet.com.hk</a></p>
   </div>
 </footer>
 
 <script>
+  // ===== i18n dictionary =====
+  const I18N = {
+    tc: {
+      _htmllang: "zh-Hant",
+      brand_sub: "合規諮詢",
+      nav_about: "關於我們", nav_services: "服務範圍", nav_commit: "服務承諾", nav_contact: "聯絡我們",
+      hero_badge: "正 式 開 業", hero_tag: "合 規 諮 詢",
+      hero_desc: "為資產管理公司、基金及持牌法團<br>提供獨立合規、反洗錢及監管諮詢",
+      hero_cta1: "預約免費諮詢", hero_cta2: "了解服務範圍",
+      stat1: "年專業經驗", stat2: "基金項目審閱經驗", stat3_num: "5000萬+", stat3: "監管罰款成功節省", stat4: "監管機構申請個案",
+      about_eyebrow: "關於我們", about_title: "創辦人簡介",
+      about_sub: "由資深合規專家親自主理,逾二十年合規領域實戰經驗,為企業客戶提供量身定制之專業解決方案。",
+      founder_name: "陳先生", founder_role: "創辦人 / 主理顧問", cred_law: "中國法學",
+      cr1_k: "從業年資", cr1_v: "逾 18 年金融服務業合規管理經驗",
+      cr2_k: "現任職務", cr2_v: "知名資產財富管理機構之合規總監",
+      cr3_k: "管轄範疇", cr3_v: "港 · 新 · 澳 · 加 · 美 · 澳門 · 台",
+      cr4_k: "語言能力", cr4_v: "英文 · 廣東話 · 普通話",
+      about_p1: "陳先生為本公司創辦人及主理顧問,擁有超過 <strong>18 年</strong>於亞太區金融服務業之合規管理及監管事務經驗,專長涵蓋香港證監會、保險業監管局、開曼群島金融管理局之監管合規、反洗錢(AML)及基金管治。陳先生曾成功主導多項複雜之監管檢查項目,並以「零罰則」紀錄完美結案,展現卓越之監管應對能力。",
+      about_p2: "陳先生曾擔任管理資產規模逾 <strong>5 億美元</strong> 之知名資產財富管理機構之合規總監,並於香港、新加坡、澳洲、加拿大及美國等多個司法管轄區建立合規架構,在持牌機構之牌照申請、AML、基金管治、虛擬資產合規及監管溝通等方面累積豐富實戰經驗。",
+      about_p3: "陳先生結合深厚之<strong>法律專業</strong>(中國法學學位)、<strong>財務專業</strong>(CPA、CFA、FRM)及<strong>前沿科技知識</strong>(MIT 應用數據科學),為客戶提供以商業實務為基礎、兼顧風險管理之合規解決方案。",
+      svc_eyebrow: "業務範圍", svc_title: "服務範圍",
+      svc_sub: "六大類別之專業服務,由具備相應專業資歷及經驗之人員負責處理,確保服務質素及合規水平。",
+      svc1_name: "財務諮詢及做帳", svc1_1: "簿記及月度 / 季度 / 年度會計處理", svc1_2: "編製財務報表(符合 HKFRS)", svc1_3: "銀行月結單核對及財務分析", svc1_4: "預算編製及現金流預測", svc1_5: "薪酬計算及強積金(MPF)管理",
+      svc2_name: "公司秘書服務", svc2_1: "擔任公司法定秘書", svc2_2: "周年申報表(NAR1)及 SCR 維護", svc2_3: "董事 / 股東 / 股本變動申報", svc2_4: "股權轉讓及印花稅申報", svc2_5: "公司註銷及清盤協助",
+      svc3_name: "公司註冊及企業架構", svc3_1: "香港有限公司註冊及成立", svc3_2: "海外公司註冊(BVI、Cayman 等)", svc3_3: "銀行開戶協助及 KYC 文件整理", svc3_4: "信託架構設計", svc3_5: "跨境企業架構諮詢",
+      svc4_name: "稅務諮詢及申報", svc4_1: "利得稅、薪俸稅、物業稅申報", svc4_2: "稅務計算及稅務規劃建議", svc4_3: "回應稅務局查詢及反對評稅", svc4_4: "離岸利潤申索協助", svc4_5: "雙重課稅寬免申請",
+      svc5_name: "審計服務", svc5_1: "法定審計(根據《公司條例》)", svc5_2: "協調獨立執業會計師(CPA)", svc5_3: "審計前財務資料整理及準備", svc5_4: "審計調整分錄處理", svc5_5: "特別審計安排(重組 / 盡職審計)",
+      svc6_name: "合規諮詢服務", svc6_1: "SFC 持牌機構持續合規諮詢", svc6_2: "SFC 牌照申請及 RO / LR 申報", svc6_3: "AML / CFT 政策制定及培訓", svc6_4: "機構 ML / TF 風險評估(IRA)", svc6_5: "TCSP 及虛擬資產合規支援",
+      commit_eyebrow: "我們的承諾", commit_title: "服務承諾",
+      cm1_t: "專業經驗", cm1_d: "核心團隊擁有逾二十年合規及香港會計稅務實戰經驗,深諳監管要求與業界實務。",
+      cm2_t: "一站式服務", cm2_d: "由日常做帳、稅務申報,至公司秘書及合規諮詢,全方位覆蓋企業所需。",
+      cm3_t: "收費透明", cm3_d: "所有服務收費清晰列明,無隱藏費用,客戶可按實際需求選擇合適方案。",
+      cm4_t: "保密原則", cm4_d: "嚴格遵守客戶資料保密原則,所有資料按香港《個人資料(私隱)條例》處理。",
+      cm5_t: "高效執行", cm5_d: "結合數字化工具與專業人員跟進,確保各類申報、簿記及諮詢準時完成。",
+      cm6_t: "持續支援", cm6_d: "提供長期顧問支援,協助客戶應對監管環境及稅務政策變化。",
+      contact_h: "與您並肩,<br><span class='gold'>共同守護與成長</span>",
+      contact_p1: "如閣下有意了解更多服務詳情,或安排免費初步諮詢,歡迎隨時透過以下方式聯絡我們。",
+      contact_p2: "我們提供靈活的諮詢時間,可透過 WhatsApp 或微信隨時交流。",
+      ct_email: "電郵 EMAIL", ct_wa: "WHATSAPP / 電話", ct_wc: "微信 WECHAT ID", ct_loc: "立足 BASED IN", ct_loc_v: "香港 Hong Kong SAR",
+      foot_disc: "本網站所載內容僅供參考之用,並不構成正式服務合約或法律意見。本公司並非律師事務所;審計服務由獨立執業會計師(CPA)負責執行。所有牌照申請及合規事宜之最終批核權屬於相關監管機構。"
+    },
+    sc: {
+      _htmllang: "zh-Hans",
+      brand_sub: "合规咨询",
+      nav_about: "关于我们", nav_services: "服务范围", nav_commit: "服务承诺", nav_contact: "联络我们",
+      hero_badge: "正 式 开 业", hero_tag: "合 规 咨 询",
+      hero_desc: "为资产管理公司、基金及持牌法团<br>提供独立合规、反洗钱及监管咨询",
+      hero_cta1: "预约免费咨询", hero_cta2: "了解服务范围",
+      stat1: "年专业经验", stat2: "基金项目审阅经验", stat3_num: "5000万+", stat3: "监管罚款成功节省", stat4: "监管机构申请个案",
+      about_eyebrow: "关于我们", about_title: "创办人简介",
+      about_sub: "由资深合规专家亲自主理,逾二十年合规领域实战经验,为企业客户提供量身定制之专业解决方案。",
+      founder_name: "陈先生", founder_role: "创办人 / 主理顾问", cred_law: "中国法学",
+      cr1_k: "从业年资", cr1_v: "逾 18 年金融服务业合规管理经验",
+      cr2_k: "现任职务", cr2_v: "知名资产财富管理机构之合规总监",
+      cr3_k: "管辖范畴", cr3_v: "港 · 新 · 澳 · 加 · 美 · 澳门 · 台",
+      cr4_k: "语言能力", cr4_v: "英文 · 广东话 · 普通话",
+      about_p1: "陈先生为本公司创办人及主理顾问,拥有超过 <strong>18 年</strong>于亚太区金融服务业之合规管理及监管事务经验,专长涵盖香港证监会、保险业监管局、开曼群岛金融管理局之监管合规、反洗钱(AML)及基金管治。陈先生曾成功主导多项复杂之监管检查项目,并以「零罚则」纪录完美结案,展现卓越之监管应对能力。",
+      about_p2: "陈先生曾担任管理资产规模逾 <strong>5 亿美元</strong> 之知名资产财富管理机构之合规总监,并于香港、新加坡、澳洲、加拿大及美国等多个司法管辖区建立合规架构,在持牌机构之牌照申请、AML、基金管治、虚拟资产合规及监管沟通等方面累积丰富实战经验。",
+      about_p3: "陈先生结合深厚之<strong>法律专业</strong>(中国法学学位)、<strong>财务专业</strong>(CPA、CFA、FRM)及<strong>前沿科技知识</strong>(MIT 应用数据科学),为客户提供以商业实务为基础、兼顾风险管理之合规解决方案。",
+      svc_eyebrow: "业务范围", svc_title: "服务范围",
+      svc_sub: "六大类别之专业服务,由具备相应专业资历及经验之人员负责处理,确保服务质素及合规水平。",
+      svc1_name: "财务咨询及做帐", svc1_1: "簿记及月度 / 季度 / 年度会计处理", svc1_2: "编制财务报表(符合 HKFRS)", svc1_3: "银行月结单核对及财务分析", svc1_4: "预算编制及现金流预测", svc1_5: "薪酬计算及强积金(MPF)管理",
+      svc2_name: "公司秘书服务", svc2_1: "担任公司法定秘书", svc2_2: "周年申报表(NAR1)及 SCR 维护", svc2_3: "董事 / 股东 / 股本变动申报", svc2_4: "股权转让及印花税申报", svc2_5: "公司注销及清盘协助",
+      svc3_name: "公司注册及企业架构", svc3_1: "香港有限公司注册及成立", svc3_2: "海外公司注册(BVI、Cayman 等)", svc3_3: "银行开户协助及 KYC 文件整理", svc3_4: "信托架构设计", svc3_5: "跨境企业架构咨询",
+      svc4_name: "税务咨询及申报", svc4_1: "利得税、薪俸税、物业税申报", svc4_2: "税务计算及税务规划建议", svc4_3: "回应税务局查询及反对评税", svc4_4: "离岸利润申索协助", svc4_5: "双重课税宽免申请",
+      svc5_name: "审计服务", svc5_1: "法定审计(根据《公司条例》)", svc5_2: "协调独立执业会计师(CPA)", svc5_3: "审计前财务资料整理及准备", svc5_4: "审计调整分录处理", svc5_5: "特别审计安排(重组 / 尽职审计)",
+      svc6_name: "合规咨询服务", svc6_1: "SFC 持牌机构持续合规咨询", svc6_2: "SFC 牌照申请及 RO / LR 申报", svc6_3: "AML / CFT 政策制定及培训", svc6_4: "机构 ML / TF 风险评估(IRA)", svc6_5: "TCSP 及虚拟资产合规支援",
+      commit_eyebrow: "我们的承诺", commit_title: "服务承诺",
+      cm1_t: "专业经验", cm1_d: "核心团队拥有逾二十年合规及香港会计税务实战经验,深谙监管要求与业界实务。",
+      cm2_t: "一站式服务", cm2_d: "由日常做帐、税务申报,至公司秘书及合规咨询,全方位覆盖企业所需。",
+      cm3_t: "收费透明", cm3_d: "所有服务收费清晰列明,无隐藏费用,客户可按实际需求选择合适方案。",
+      cm4_t: "保密原则", cm4_d: "严格遵守客户资料保密原则,所有资料按香港《个人资料(私隐)条例》处理。",
+      cm5_t: "高效执行", cm5_d: "结合数字化工具与专业人员跟进,确保各类申报、簿记及咨询准时完成。",
+      cm6_t: "持续支援", cm6_d: "提供长期顾问支援,协助客户应对监管环境及税务政策变化。",
+      contact_h: "与您并肩,<br><span class='gold'>共同守护与成长</span>",
+      contact_p1: "如阁下有意了解更多服务详情,或安排免费初步咨询,欢迎随时透过以下方式联络我们。",
+      contact_p2: "我们提供灵活的咨询时间,可透过 WhatsApp 或微信随时交流。",
+      ct_email: "电邮 EMAIL", ct_wa: "WHATSAPP / 电话", ct_wc: "微信 WECHAT ID", ct_loc: "立足 BASED IN", ct_loc_v: "香港 Hong Kong SAR",
+      foot_disc: "本网站所载内容仅供参考之用,并不构成正式服务合约或法律意见。本公司并非律师事务所;审计服务由独立执业会计师(CPA)负责执行。所有牌照申请及合规事宜之最终批核权属于相关监管机构。"
+    },
+    en: {
+      _htmllang: "en",
+      brand_sub: "COMPLIANCE",
+      nav_about: "About", nav_services: "Services", nav_commit: "Commitment", nav_contact: "Contact",
+      hero_badge: "NOW OPEN", hero_tag: "COMPLIANCE",
+      hero_desc: "Independent Compliance, AML & Regulatory Advisory<br>for Asset Managers, Funds & Licensed Corporations",
+      hero_cta1: "Book a Free Consultation", hero_cta2: "Explore Our Services",
+      stat1: "Years of Experience", stat2: "Fund Projects Reviewed", stat3_num: "$50M+", stat3: "Regulatory Fines Saved", stat4: "Regulatory Applications Handled",
+      about_eyebrow: "ABOUT US", about_title: "About the Founder",
+      about_sub: "Led personally by a seasoned compliance expert with over two decades of hands-on experience, delivering tailored professional solutions to corporate clients.",
+      founder_name: "Mr. Chan", founder_role: "Founder / Principal Consultant", cred_law: "PRC Law",
+      cr1_k: "Experience", cr1_v: "18+ years in financial services compliance management",
+      cr2_k: "Current Role", cr2_v: "Head of Compliance at a leading asset & wealth management firm",
+      cr3_k: "Jurisdictions", cr3_v: "HK · SG · AU · CA · US · Macau · TW",
+      cr4_k: "Languages", cr4_v: "English · Cantonese · Mandarin",
+      about_p1: "Mr. Chan is the Founder and Principal Consultant of the firm, with over <strong>18 years</strong> of compliance management and regulatory affairs experience in the Asia-Pacific financial services industry. His expertise spans regulatory compliance, anti-money laundering (AML) and fund governance across the Hong Kong SFC, the Insurance Authority, and the Cayman Islands Monetary Authority. He has successfully led numerous complex regulatory inspections, all concluded with a flawless \u201Czero-penalty\u201D record.",
+      about_p2: "Mr. Chan previously served as Head of Compliance at a renowned asset & wealth management firm managing over <strong>USD 500 million</strong> in assets, building compliance frameworks across Hong Kong, Singapore, Australia, Canada and the United States. He has accumulated extensive hands-on experience in licensing applications, AML, fund governance, virtual-asset compliance and regulatory communications.",
+      about_p3: "Mr. Chan combines deep <strong>legal expertise</strong> (PRC Law degree), <strong>financial credentials</strong> (CPA, CFA, FRM) and <strong>cutting-edge technology knowledge</strong> (MIT Applied Data Science) to deliver compliance solutions grounded in commercial practicality and risk management.",
+      svc_eyebrow: "WHAT WE DO", svc_title: "Our Services",
+      svc_sub: "Six categories of professional services, each handled by personnel with the relevant qualifications and experience to ensure quality and compliance.",
+      svc1_name: "Accounting & Bookkeeping", svc1_1: "Monthly / quarterly / annual bookkeeping", svc1_2: "Financial statements (HKFRS compliant)", svc1_3: "Bank reconciliation & financial analysis", svc1_4: "Budgeting & cash-flow forecasting", svc1_5: "Payroll & MPF administration",
+      svc2_name: "Company Secretary", svc2_1: "Acting as statutory company secretary", svc2_2: "Annual return (NAR1) & SCR maintenance", svc2_3: "Director / shareholder / capital changes", svc2_4: "Share transfer & stamp duty filing", svc2_5: "Deregistration & winding-up support",
+      svc3_name: "Incorporation & Structuring", svc3_1: "Hong Kong company incorporation", svc3_2: "Offshore companies (BVI, Cayman, etc.)", svc3_3: "Bank account opening & KYC support", svc3_4: "Trust structure design", svc3_5: "Cross-border corporate structuring",
+      svc4_name: "Tax Advisory & Filing", svc4_1: "Profits, salaries & property tax filing", svc4_2: "Tax computation & planning advice", svc4_3: "Handling IRD enquiries & objections", svc4_4: "Offshore profits claim assistance", svc4_5: "Double taxation relief applications",
+      svc5_name: "Audit Services", svc5_1: "Statutory audit (Companies Ordinance)", svc5_2: "Coordination with independent CPA", svc5_3: "Pre-audit financial preparation", svc5_4: "Audit adjustment processing", svc5_5: "Special audits (restructuring / due diligence)",
+      svc6_name: "Compliance Advisory", svc6_1: "Ongoing SFC licensed-firm advisory", svc6_2: "SFC licensing & RO / LR submissions", svc6_3: "AML / CFT policy design & training", svc6_4: "Institutional ML / TF risk assessment (IRA)", svc6_5: "TCSP & virtual-asset compliance support",
+      commit_eyebrow: "OUR PROMISE", commit_title: "Our Commitment",
+      cm1_t: "Proven Expertise", cm1_d: "Our core team brings over two decades of compliance and Hong Kong accounting & tax experience, with deep command of regulatory requirements and industry practice.",
+      cm2_t: "One-Stop Service", cm2_d: "From daily bookkeeping and tax filing to company secretary and compliance advisory \u2014 comprehensive coverage of business needs.",
+      cm3_t: "Transparent Fees", cm3_d: "All fees are clearly stated with no hidden charges; clients choose the package that suits their actual needs.",
+      cm4_t: "Confidentiality", cm4_d: "We strictly observe client confidentiality, handling all data in accordance with the Personal Data (Privacy) Ordinance.",
+      cm5_t: "Efficient Delivery", cm5_d: "Combining digital tools with dedicated personnel to ensure timely completion of filings, bookkeeping and advisory.",
+      cm6_t: "Ongoing Support", cm6_d: "We provide long-term advisory support, helping clients navigate regulatory and tax-policy changes.",
+      contact_h: "Side by side with you \u2014<br><span class='gold'>protecting & growing together</span>",
+      contact_p1: "To learn more about our services or arrange a complimentary initial consultation, please reach out to us through any of the channels below.",
+      contact_p2: "We offer flexible consultation hours and are happy to connect anytime via WhatsApp or WeChat.",
+      ct_email: "EMAIL", ct_wa: "WHATSAPP / TEL", ct_wc: "WECHAT ID", ct_loc: "BASED IN", ct_loc_v: "Hong Kong SAR",
+      foot_disc: "The content of this website is for reference only and does not constitute a formal service agreement or legal advice. The firm is not a law firm; audit services are performed by an independent practising CPA. Final approval of all licensing and compliance matters rests with the relevant regulatory authorities."
+    }
+  };
+
+  function setLang(lang){
+    const dict = I18N[lang];
+    if(!dict) return;
+    document.body.setAttribute('data-lang', lang);
+    document.documentElement.setAttribute('lang', dict._htmllang);
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.querySelectorAll('.lang-switch button').forEach(b=>{
+      b.classList.toggle('active', b.getAttribute('data-setlang') === lang);
+    });
+    try { localStorage.setItem('ecanet_lang', lang); } catch(e){}
+  }
+
+  document.querySelectorAll('.lang-switch button').forEach(b=>{
+    b.addEventListener('click', ()=> setLang(b.getAttribute('data-setlang')));
+  });
+
+  // restore saved language (default tc)
+  (function(){
+    let saved = 'tc';
+    try { saved = localStorage.getItem('ecanet_lang') || 'tc'; } catch(e){}
+    if(saved !== 'tc') setLang(saved);
+  })();
+
   // year
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -553,13 +580,7 @@
 
   // reveal on scroll
   const io = new IntersectionObserver((entries)=>{
-    entries.forEach((e,i)=>{
-      if(e.isIntersecting){
-        const cards = e.target.parentElement ? Array.from(e.target.parentElement.querySelectorAll('.reveal')) : [];
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      }
-    });
+    entries.forEach((e)=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   },{threshold:0.12});
   document.querySelectorAll('.reveal').forEach((el,i)=>{
     el.style.transitionDelay = (i % 6 * 0.08) + 's';
@@ -568,9 +589,7 @@
 
   // close mobile menu on link click
   document.querySelectorAll('.nav-links a').forEach(a=>{
-    a.addEventListener('click', ()=>{
-      if(window.innerWidth <= 880) document.querySelector('.nav-links').style.display='none';
-    });
+    a.addEventListener('click', ()=>{ document.getElementById('navlinks').classList.remove('open'); });
   });
 </script>
 
