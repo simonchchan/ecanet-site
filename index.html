@@ -127,7 +127,7 @@
   .sec-eyebrow { font-family:'Noto Serif TC',serif; color: var(--gold); letter-spacing: 6px; font-size: 14px; margin-bottom: 14px; }
   body[data-lang="sc"] .sec-eyebrow { font-family:'Noto Serif SC',serif; }
   body[data-lang="en"] .sec-eyebrow { font-family:'Cormorant Garamond',serif; letter-spacing: 4px; font-size: 16px; }
-  .sec-eyebrow::before, .sec-eyebrow::after { content:'\\25C6'; font-size: 9px; margin: 0 14px; vertical-align: middle; }
+  .sec-eyebrow::before, .sec-eyebrow::after { content:'\25C6'; font-size: 9px; margin: 0 14px; vertical-align: middle; }
   .sec-title { font-family:'Noto Serif TC',serif; font-weight: 700; font-size: clamp(28px,5vw,42px); color: #fff; letter-spacing: 2px; }
   body[data-lang="sc"] .sec-title { font-family:'Noto Serif SC',serif; }
   body[data-lang="en"] .sec-title { font-family:'Cormorant Garamond',serif; }
@@ -171,6 +171,45 @@
   .svc-list { list-style: none; }
   .svc-list li { color: var(--muted); font-size: 14px; font-weight: 300; padding: 5px 0 5px 18px; position: relative; line-height: 1.6; }
   .svc-list li::before { content:''; position:absolute; left:0; top:13px; width:5px; height:5px; background: var(--gold); transform: rotate(45deg); }
+
+  /* training */
+  .training-intro { text-align: center; max-width: 720px; margin: 0 auto 48px; }
+  .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; margin-bottom: 44px; }
+  .course-card {
+    background: linear-gradient(160deg, var(--navy-light), var(--navy-deep));
+    border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform .4s ease, border-color .4s ease, box-shadow .4s ease;
+    text-decoration: none; color: inherit; position: relative;
+  }
+  .course-card:hover { transform: translateY(-8px); border-color: var(--gold); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+  .course-thumb {
+    height: 190px; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, var(--navy), #142E56 55%, var(--navy-deep));
+    display: flex; align-items: center; justify-content: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .course-thumb::before { content:''; position:absolute; inset:0; background: radial-gradient(circle at 30% 20%, rgba(201,169,97,0.18), transparent 55%); }
+  .course-thumb .ct-shield { width: 78px; height: 108px; opacity: .95; position: relative; z-index: 2; }
+  .course-thumb .ct-tag { position: absolute; top: 16px; right: 16px; background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; padding: 5px 12px; border-radius: 2px; z-index: 3; }
+  .course-body { padding: 28px 26px; flex: 1; display: flex; flex-direction: column; }
+  .course-cat { font-family:'Noto Serif TC',serif; font-size: 12px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+  body[data-lang="sc"] .course-cat { font-family:'Noto Serif SC',serif; }
+  body[data-lang="en"] .course-cat { font-family:'Cormorant Garamond',serif; }
+  .course-name { font-family:'Noto Serif TC',serif; font-weight: 600; font-size: 22px; color: #fff; margin-bottom: 12px; line-height: 1.35; }
+  body[data-lang="sc"] .course-name { font-family:'Noto Serif SC',serif; }
+  body[data-lang="en"] .course-name { font-family:'Cormorant Garamond',serif; font-size: 26px; letter-spacing: .5px; }
+  .course-desc { color: var(--muted); font-size: 14px; font-weight: 300; margin-bottom: 20px; flex: 1; }
+  .course-meta { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--line); }
+  .course-cta { color: var(--gold); font-size: 14px; letter-spacing: 1.5px; display: inline-flex; align-items: center; gap: 6px; }
+  .course-card:hover .course-cta { color: var(--gold-bright); }
+  .course-cta svg { width: 14px; height: 14px; transition: transform .3s; }
+  .course-card:hover .course-cta svg { transform: translateX(4px); }
+  .course-hosted { font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+  .training-all { text-align: center; }
+  .btn-outline { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--gold); color: var(--gold); padding: 14px 34px; border-radius: 2px; text-decoration: none; font-size: 15px; letter-spacing: 2px; transition: all .3s; }
+  .btn-outline:hover { background: var(--gold); color: var(--navy); }
+  .btn-outline svg { width: 14px; height: 14px; }
 
   /* commitment */
   .commit { background: var(--navy-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
@@ -236,6 +275,7 @@
       <nav class="nav-links" id="navlinks">
         <a href="#about" data-i18n="nav_about">關於我們</a>
         <a href="#services" data-i18n="nav_services">服務範圍</a>
+        <a href="#training" data-i18n="nav_training">培訓課程</a>
         <a href="#commitment" data-i18n="nav_commit">服務承諾</a>
         <a href="#contact" class="nav-cta" data-i18n="nav_contact">聯絡我們</a>
       </nav>
@@ -343,6 +383,45 @@
   </div>
 </section>
 
+<!-- TRAINING -->
+<section class="block" id="training">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow" data-i18n="training_eyebrow">知識分享</div>
+      <h2 class="sec-title" data-i18n="training_title">培訓課程</h2>
+      <p class="sec-sub training-intro" data-i18n="training_sub">將二十年合規實戰經驗提煉為結構化的培訓內容,協助持牌機構、合規人員及金融從業員系統化掌握監管要求與應對技巧。課程由 Payhip 平台代為託管,可即時購買與觀看。</p>
+    </div>
+
+    <div class="course-grid">
+      <a class="course-card reveal" href="https://payhip.com/b/AoKMz" target="_blank" rel="noopener">
+        <div class="course-thumb">
+          <span class="ct-tag" data-i18n="course_tag_featured">FEATURED</span>
+          <svg class="ct-shield" viewBox="0 0 140 195"><path d="M0 0 L140 0 L140 120 L70 195 L0 120 Z" fill="#0A1F3D" stroke="#C9A961" stroke-width="3"/><line x1="42" y1="60" x2="70" y2="88" stroke="#C9A961" stroke-width="2"/><line x1="98" y1="60" x2="70" y2="88" stroke="#C9A961" stroke-width="2"/><line x1="42" y1="60" x2="98" y2="60" stroke="#C9A961" stroke-width="2"/><line x1="42" y1="60" x2="70" y2="128" stroke="#C9A961" stroke-width="2"/><line x1="98" y1="60" x2="70" y2="128" stroke="#C9A961" stroke-width="2"/><line x1="70" y1="88" x2="70" y2="128" stroke="#C9A961" stroke-width="2"/><circle cx="70" cy="42" r="12" fill="#C9A961"/><circle cx="38" cy="84" r="12" fill="#C9A961"/><circle cx="102" cy="84" r="12" fill="#C9A961"/><circle cx="70" cy="128" r="12" fill="#C9A961"/><circle cx="70" cy="162" r="14" fill="#fff" stroke="#C9A961" stroke-width="1.5"/><path d="M62 162 L68 168 L79 156" fill="none" stroke="#0A1F3D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="course-body">
+          <div class="course-cat" data-i18n="course1_cat">合規實戰系列</div>
+          <div class="course-name" data-i18n="course1_name">Handling SFC Inspection</div>
+          <div class="course-desc" data-i18n="course1_desc">從SFC例行檢查通知抵達的一刻開始,一步一步帶您了解監管檢查的全流程:文件準備、面談應對、常見問題、後續跟進。由曾親自處理多次SFC檢查、零罰則紀錄之資深合規總監主講,內容涵蓋實戰技巧與監管思路。</div>
+          <div class="course-meta">
+            <span class="course-cta">
+              <span data-i18n="course_cta">立即了解</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+            <span class="course-hosted">via Payhip</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="training-all reveal">
+      <a class="btn-outline" href="https://payhip.com/ECANETComplianceService" target="_blank" rel="noopener">
+        <span data-i18n="training_all_btn">查看所有課程</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- COMMITMENT -->
 <section class="block commit" id="commitment">
   <div class="wrap">
@@ -410,7 +489,7 @@
     tc: {
       _htmllang: "zh-Hant",
       brand_sub: "合規諮詢",
-      nav_about: "關於我們", nav_services: "服務範圍", nav_commit: "服務承諾", nav_contact: "聯絡我們",
+      nav_about: "關於我們", nav_services: "服務範圍", nav_training: "培訓課程", nav_commit: "服務承諾", nav_contact: "聯絡我們",
       hero_tag: "合 規 諮 詢",
       hero_desc: "為資產管理公司、基金及持牌法團<br>提供獨立合規、反洗錢及監管諮詢",
       hero_cta1: "預約免費諮詢", hero_cta2: "了解服務範圍",
@@ -434,6 +513,12 @@
       svc5_name: "審計服務", svc5_1: "法定審計(根據《公司條例》)", svc5_2: "協調獨立執業會計師(CPA)", svc5_3: "審計前財務資料整理及準備", svc5_4: "審計調整分錄處理", svc5_5: "特別審計安排(重組 / 盡職審計)",
       svc6_name: "合規諮詢服務", svc6_1: "SFC 持牌機構持續合規諮詢", svc6_2: "SFC 牌照申請及 RO / LR 申報", svc6_3: "AML / CFT 政策制定及培訓", svc6_4: "機構 ML / TF 風險評估(IRA)", svc6_5: "TCSP 及虛擬資產合規支援",
       commit_eyebrow: "我們的承諾", commit_title: "服務承諾",
+      training_eyebrow: "知識分享", training_title: "培訓課程",
+      training_sub: "將二十年合規實戰經驗提煉為結構化的培訓內容,協助持牌機構、合規人員及金融從業員系統化掌握監管要求與應對技巧。課程由 Payhip 平台代為託管,可即時購買與觀看。",
+      course_tag_featured: "精選課程", course_cta: "立即了解", training_all_btn: "查看所有課程",
+      course1_cat: "合規實戰系列",
+      course1_name: "Handling SFC Inspection",
+      course1_desc: "從SFC例行檢查通知抵達的一刻開始,一步一步帶您了解監管檢查的全流程:文件準備、面談應對、常見問題、後續跟進。由曾親自處理多次SFC檢查、零罰則紀錄之資深合規總監主講,內容涵蓋實戰技巧與監管思路。",
       cm1_t: "專業經驗", cm1_d: "核心團隊擁有逾二十年合規及香港會計稅務實戰經驗,深諳監管要求與業界實務。",
       cm2_t: "一站式服務", cm2_d: "由日常做帳、稅務申報,至公司秘書及合規諮詢,全方位覆蓋企業所需。",
       cm3_t: "收費透明", cm3_d: "所有服務收費清晰列明,無隱藏費用,客戶可按實際需求選擇合適方案。",
@@ -449,7 +534,7 @@
     sc: {
       _htmllang: "zh-Hans",
       brand_sub: "合规咨询",
-      nav_about: "关于我们", nav_services: "服务范围", nav_commit: "服务承诺", nav_contact: "联络我们",
+      nav_about: "关于我们", nav_services: "服务范围", nav_training: "培训课程", nav_commit: "服务承诺", nav_contact: "联络我们",
       hero_tag: "合 规 咨 询",
       hero_desc: "为资产管理公司、基金及持牌法团<br>提供独立合规、反洗钱及监管咨询",
       hero_cta1: "预约免费咨询", hero_cta2: "了解服务范围",
@@ -473,6 +558,12 @@
       svc5_name: "审计服务", svc5_1: "法定审计(根据《公司条例》)", svc5_2: "协调独立执业会计师(CPA)", svc5_3: "审计前财务资料整理及准备", svc5_4: "审计调整分录处理", svc5_5: "特别审计安排(重组 / 尽职审计)",
       svc6_name: "合规咨询服务", svc6_1: "SFC 持牌机构持续合规咨询", svc6_2: "SFC 牌照申请及 RO / LR 申报", svc6_3: "AML / CFT 政策制定及培训", svc6_4: "机构 ML / TF 风险评估(IRA)", svc6_5: "TCSP 及虚拟资产合规支援",
       commit_eyebrow: "我们的承诺", commit_title: "服务承诺",
+      training_eyebrow: "知识分享", training_title: "培训课程",
+      training_sub: "将二十年合规实战经验提炼为结构化的培训内容,协助持牌机构、合规人员及金融从业员系统化掌握监管要求与应对技巧。课程由 Payhip 平台代为托管,可即时购买与观看。",
+      course_tag_featured: "精选课程", course_cta: "立即了解", training_all_btn: "查看所有课程",
+      course1_cat: "合规实战系列",
+      course1_name: "Handling SFC Inspection",
+      course1_desc: "从SFC例行检查通知抵达的一刻开始,一步一步带您了解监管检查的全流程:文件准备、面谈应对、常见问题、后续跟进。由曾亲自处理多次SFC检查、零罚则纪录之资深合规总监主讲,内容涵盖实战技巧与监管思路。",
       cm1_t: "专业经验", cm1_d: "核心团队拥有逾二十年合规及香港会计税务实战经验,深谙监管要求与业界实务。",
       cm2_t: "一站式服务", cm2_d: "由日常做帐、税务申报,至公司秘书及合规咨询,全方位覆盖企业所需。",
       cm3_t: "收费透明", cm3_d: "所有服务收费清晰列明,无隐藏费用,客户可按实际需求选择合适方案。",
@@ -488,7 +579,7 @@
     en: {
       _htmllang: "en",
       brand_sub: "COMPLIANCE",
-      nav_about: "About", nav_services: "Services", nav_commit: "Commitment", nav_contact: "Contact",
+      nav_about: "About", nav_services: "Services", nav_training: "Training", nav_commit: "Commitment", nav_contact: "Contact",
       hero_tag: "COMPLIANCE",
       hero_desc: "Independent Compliance, AML & Regulatory Advisory<br>for Asset Managers, Funds & Licensed Corporations",
       hero_cta1: "Book a Free Consultation", hero_cta2: "Explore Our Services",
@@ -512,6 +603,12 @@
       svc5_name: "Audit Services", svc5_1: "Statutory audit (Companies Ordinance)", svc5_2: "Coordination with independent CPA", svc5_3: "Pre-audit financial preparation", svc5_4: "Audit adjustment processing", svc5_5: "Special audits (restructuring / due diligence)",
       svc6_name: "Compliance Advisory", svc6_1: "Ongoing SFC licensed-firm advisory", svc6_2: "SFC licensing & RO / LR submissions", svc6_3: "AML / CFT policy design & training", svc6_4: "Institutional ML / TF risk assessment (IRA)", svc6_5: "TCSP & virtual-asset compliance support",
       commit_eyebrow: "OUR PROMISE", commit_title: "Our Commitment",
+      training_eyebrow: "KNOWLEDGE SHARING", training_title: "Training Courses",
+      training_sub: "Two decades of compliance expertise distilled into structured training, helping licensed firms, compliance officers and finance professionals master regulatory requirements and practical response techniques. Courses are hosted on Payhip for instant purchase and access.",
+      course_tag_featured: "FEATURED", course_cta: "Learn More", training_all_btn: "View All Courses",
+      course1_cat: "COMPLIANCE IN PRACTICE",
+      course1_name: "Handling SFC Inspection",
+      course1_desc: "From the moment the SFC inspection notice arrives, this course walks you through every stage of a regulatory inspection: document preparation, interview handling, common pitfalls, and follow-up. Delivered by a Head of Compliance who has personally led multiple SFC inspections with a flawless zero-penalty record.",
       cm1_t: "Proven Expertise", cm1_d: "Our core team brings over two decades of compliance and Hong Kong accounting & tax experience, with deep command of regulatory requirements and industry practice.",
       cm2_t: "One-Stop Service", cm2_d: "From daily bookkeeping and tax filing to company secretary and compliance advisory \u2014 comprehensive coverage of business needs.",
       cm3_t: "Transparent Fees", cm3_d: "All fees are clearly stated with no hidden charges; clients choose the package that suits their actual needs.",
